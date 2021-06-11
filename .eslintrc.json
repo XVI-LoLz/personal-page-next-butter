@@ -31,6 +31,17 @@
   "plugins": [],
   "rules": {
     "quotes": [2, "double", { "avoidEscape": true }],
+    "arrow-body-style": ["error", "beside"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "only-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline",
+        "exports": "only-multiline",
+        "functions": "never"
+      }
+    ],
     "react/prop-types": "warn",
     "react/jsx-props-no-spreading": "off",
     "react/react-in-jsx-scope": "off",
