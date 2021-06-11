@@ -26,12 +26,18 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["./"]
+      }
     }
   },
   "plugins": [],
   "rules": {
+    "object-curly-newline": "off",
+    "no-unused-vars": "warn",
     "quotes": [2, "double", { "avoidEscape": true }],
-    "arrow-body-style": ["error", "beside"],
     "comma-dangle": [
       "error",
       {
@@ -45,7 +51,17 @@
     "react/prop-types": "warn",
     "react/jsx-props-no-spreading": "off",
     "react/react-in-jsx-scope": "off",
+    "react/no-array-index-key": "warn",
     "react/jsx-one-expression-per-line": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "import/prefer-default-export": "off"
   }
 }
