@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@notionhq/client": "^0.1.9",
+    "modern-css-reset": "^1.4.0",
     "next": "10.2.3",
     "notion-client": "^4.6.4",
     "notion-utils": "^4.6.4",
