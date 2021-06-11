@@ -1,0 +1,13 @@
+.SocialNetwork {
+  display: flex;
+  align-items: center;
+  > *:not(:last-child) {
+    margin-right: var(--spacing-1);
+  }
+
+  .icon {
+  }
+
+  .label {
+  }
+}

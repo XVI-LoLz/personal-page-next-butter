@@ -1,0 +1,17 @@
+.page {
+  &.-single-column {
+    display: grid;
+    grid-template-columns: 1fr [content-start] 824px [content-end] 1fr;
+    .content {
+      grid-column: content-start / content-end;
+      margin: var(--spacing-2) 0;
+    }
+    @media (max-width: 1024px) {
+      display: grid;
+      grid-template-columns: 0px [content-start] 1fr [content-end] 0px;
+      .content {
+        padding: 0 var(--spacing-4);
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.Socials {
+  display: flex;
+  > :not(:last-child) {
+    margin-right: var(--spacing-2);
+  }
+}
