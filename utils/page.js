@@ -39,6 +39,8 @@ const getPageInfo = (page) => {
     info[propName] = getContentByPropType(properties[propName]);
   });
 
+  if (info.slug === "") info.slug = id;
+
   return info;
 };
 
