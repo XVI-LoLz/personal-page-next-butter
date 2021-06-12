@@ -9,7 +9,7 @@
   --color-hl-orange: #bc745c;
   --color-hl-green: #90c54d;
 
-  --spacing-h: calc(var(--spacing-1) / 4);
+  --spacing-q: calc(var(--spacing-1) / 4);
   --spacing-h: calc(var(--spacing-1) / 2);
   --spacing-1: 8px;
   --spacing-2: calc(var(--spacing-1) * 2);
@@ -33,4 +33,7 @@
   --weight-regular: 400;
   --weight-semibold: 700;
   --weight-bold: 800;
+
+  --navbar-height: 80px;
+  --banner-height: 400px;
 }
