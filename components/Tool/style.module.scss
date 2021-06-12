@@ -1,0 +1,59 @@
+.Tool {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 248px;
+  .toolLogoContainer {
+    position: relative;
+    height: 160px;
+    width: 100%;
+    .toolLogo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 176px;
+      height: 176px;
+      filter: drop-shadow(4px 0px 32px rgba(0, 0, 0, 0.32));
+    }
+  }
+  .contentWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-bg-secondary);
+    border-radius: var(--spacing-1);
+    padding: 26px 20px 16px 20px;
+    .title {
+      margin-bottom: var(--spacing-1);
+    }
+    .type {
+      margin-bottom: var(--spacing-2);
+      color: var(--color-fg-secondary);
+      font-weight: var(--weight-semibold);
+    }
+    .descriptionLabel {
+      margin-bottom: var(--spacing-2);
+      font-weight: var(--weight-bold);
+      color: var(--color-hl-blue);
+    }
+    .description {
+      margin-bottom: var(--spacing-2);
+    }
+    .goTo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      height: 32px;
+      background-color: var(--color-fg-secondary);
+      border-radius: var(--spacing-4);
+      &:hover {
+        background-color: var(--color-hl-blue);
+      }
+    }
+  }
+}

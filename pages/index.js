@@ -55,7 +55,7 @@ export const getStaticProps = async () => {
     const publishedPosts = posts.filter(({ published }) => published);
 
     return {
-      props: { posts },
+      props: { posts: publishedPosts },
     };
   } catch (e) {
     console.error(e);

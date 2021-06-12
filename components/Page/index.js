@@ -59,7 +59,7 @@ Page.defaultProps = {
   className: null,
   title: "XVI",
   banner: null,
-  children: PropTypes.null,
-  sidebar: PropTypes.node,
+  children: null,
+  sidebar: null,
   hideWhitespace: false,
 };
