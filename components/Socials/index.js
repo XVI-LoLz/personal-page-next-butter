@@ -6,7 +6,7 @@ import { socials } from "./constants";
 
 export default function Socials() {
   return (
-    <div className={style}>
+    <div className={style.Socials}>
       {socials.map((social, i) => (
         <SocialNetwork key={i} {...social} />
       ))}

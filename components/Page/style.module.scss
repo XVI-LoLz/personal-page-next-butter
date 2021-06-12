@@ -1,5 +1,6 @@
-.page {
-  &.-single-column {
+.Page {
+  height: calc(100vh - var(--navbar-height));
+  &.singleColumn {
     display: grid;
     grid-template-columns: 1fr [content-start] 824px [content-end] 1fr;
     .content {

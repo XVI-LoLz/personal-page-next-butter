@@ -9,18 +9,18 @@ import style from "./style.module.scss";
 
 import { routes } from "./constants";
 
-export default function Nav() {
+export default function MainNavbar() {
   const { pathname } = useRouter();
   return (
-    <nav className={style}>
-      <Logo className="logo" />
-      <ul className="links">
+    <nav className={style.MainNavbar}>
+      <Logo className={style.logo} />
+      <ul className={style.links}>
         {routes.map(({ route, es }, i) => (
           <li key={i}>
             <Link href={route}>
               <a
-                className={cn("link", {
-                  "-active":
+                className={cn(style.link, {
+                  [style.active]:
                     i === 0
                       ? pathname.length === route.length
                       : pathname.startsWith(route),

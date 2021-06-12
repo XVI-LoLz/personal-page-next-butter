@@ -1,2 +1,47 @@
-.MainNavBar {
+.MainNavbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--navbar-height);
+  font-size: var(--em-size-m);
+  font-weight: var(--weight-semibold);
+
+  > :not(:last-child) {
+    margin-right: 80px;
+  }
+
+  .invisible {
+    visibility: hidden;
+  }
+
+  .logo {
+    display: flex;
+    width: auto;
+    height: 32px;
+    fill: var(--color-fg-primary);
+  }
+}
+
+.links {
+  padding: 0;
+  display: flex;
+
+  > :not(:last-child) {
+    margin-right: var(--spacing-3);
+  }
+
+  li {
+    list-style-type: none;
+  }
+}
+
+.link {
+  text-transform: capitalize;
+  color: var(--color-fg-secondary);
+  &:hover {
+    color: var(--color-hl-blue);
+  }
+  &.active {
+    color: var(--color-fg-primary);
+  }
 }
