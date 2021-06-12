@@ -62,7 +62,7 @@ export async function getStaticPaths() {
 
     const posts = pages.map((page) => getPageInfo(page));
     const publishedPosts = posts.filter(({ published }) => published);
-    const paths = publishedPosts.map((el) => el.slug);
+    const paths = publishedPosts.map(({ slug }) => `/blog/${slug}`);
     return {
       paths,
       fallback: true,
