@@ -5,6 +5,7 @@ const getContentByPropType = (prop) => {
     case "title":
     case "rich_text":
       return value?.[0]?.plain_text || "";
+    case "files":
     case "multi_select":
       return value?.map((el) => el.name);
     case "relation":
