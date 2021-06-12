@@ -11,6 +11,14 @@ const queryDatabase = async ({ id, condensed }) => {
   return results;
 };
 
+const getCondensedDatabase = async ({ id }) => {
+  const { results } = await notionAPI.databases.query({
+    database_id: id,
+  });
+
+  return results.map((res) => getPageInfo(res));
+};
+
 const getDatabaseList = async () => {
   const { results } = await notionAPI.search({
     filter: { property: "object", value: "database" },
@@ -18,4 +26,4 @@ const getDatabaseList = async () => {
   return results;
 };
 
-export { queryDatabase, getDatabaseList };
+export { queryDatabase, getDatabaseList, getCondensedDatabase };

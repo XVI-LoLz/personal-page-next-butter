@@ -5,6 +5,7 @@ const getContentByPropType = (prop) => {
     case "title":
     case "rich_text":
       return value?.[0]?.plain_text || "";
+    case "files":
     case "multi_select":
       return value?.map((el) => el.name);
     case "relation":
@@ -38,9 +39,19 @@ const getPageInfo = (page) => {
     info[propName] = getContentByPropType(properties[propName]);
   });
 
+  if (info.slug === "") info.slug = id;
+
   return info;
 };
 
 const getCondensedPages = (pages) => pages.map((page) => getPageInfo(page));
 
-export { getPageInfo, getCondensedPages };
+const getTypesAndOccurrences = (pages) => {
+  const types = {};
+  pages.forEach(({ type }) => {
+    types[type] = (types[type] || 0) + 1;
+  });
+  return Object.entries(types);
+};
+
+export { getPageInfo, getCondensedPages, getTypesAndOccurrences };
