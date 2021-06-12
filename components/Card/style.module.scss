@@ -1,0 +1,27 @@
+.Card {
+  display: inline-block;
+  width: 400px;
+  min-height: 96px;
+  background-color: var(--color-bg-secondary);
+  padding: var(--spacing-3);
+  padding-top: var(--spacing-2);
+  border-radius: var(--spacing-1);
+
+  .cardHeader {
+    font-size: var(--em-size-ml);
+    font-weight: var(--weight-bold);
+    text-transform: capitalize;
+    margin-bottom: var(--spacing-1);
+  }
+
+  .cardDescription {
+    margin-bottom: 12px;
+  }
+
+  .cardCta {
+    all: unset;
+    text-transform: uppercase;
+    color: var(--color-hl-blue);
+    font-weight: var(--weight-bold);
+  }
+}

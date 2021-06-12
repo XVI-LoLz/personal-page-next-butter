@@ -34,11 +34,13 @@ const getPageInfo = (page) => {
     lastEditedTime,
   };
 
-  Object.keys(properties).forEach(
-    (propName) => (info[propName] = getContentByPropType(properties[propName]))
-  );
+  Object.keys(properties).forEach((propName) => {
+    info[propName] = getContentByPropType(properties[propName]);
+  });
 
   return info;
 };
 
-export { getPageInfo };
+const getCondensedPages = (pages) => pages.map((page) => getPageInfo(page));
+
+export { getPageInfo, getCondensedPages };
