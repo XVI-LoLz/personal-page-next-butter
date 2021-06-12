@@ -34,9 +34,9 @@ const getPageInfo = (page) => {
     lastEditedTime,
   };
 
-  Object.keys(properties).forEach(
-    (propName) => (info[propName] = getContentByPropType(properties[propName]))
-  );
+  Object.keys(properties).forEach((propName) => {
+    info[propName] = getContentByPropType(properties[propName]);
+  });
 
   return info;
 };
