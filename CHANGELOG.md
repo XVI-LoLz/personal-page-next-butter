@@ -7,6 +7,10 @@ Fixed
 Security
 ---
 
+## [0.4.1] - 2021-06-12
+### Fixed
+- Static build paths
+
 ## [0.4.0] - 2021-06-12
 ### Added
 - Tools and Resources pages and slug logic
