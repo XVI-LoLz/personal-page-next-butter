@@ -1,0 +1,22 @@
+.ProjectCard {
+  position: relative;
+  width: 240px;
+  height: auto;
+  .cardBackground {
+    object-fit: cover;
+    border-radius: var(--spacing-1);
+  }
+  .cardLabel {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: var(--em-size-m);
+    letter-spacing: 0.4em;
+  }
+}

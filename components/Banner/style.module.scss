@@ -1,0 +1,62 @@
+.Banner {
+  position: relative;
+  grid-column: 1 / 4;
+  height: var(--banner-height);
+  margin-bottom: var(--spacing-2);
+
+  .descriptionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .descriptionContainer .description {
+    text-transform: uppercase;
+    font-weight: var(--wight-bold);
+
+    .header {
+      font-size: var(--em-size-ml);
+    }
+    .introduction {
+      font-size: var(--em-size-xl);
+      max-width: 448px;
+      margin-bottom: var(--spacing-2);
+    }
+    .cta {
+      cursor: pointer;
+      text-transform: inherit;
+      color: inherit;
+      padding: var(--spacing-1) var(--spacing-2);
+      background-color: var(--color-hl-purple);
+      border-radius: var(--spacing-h);
+    }
+  }
+
+  .background {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    object-fit: cover;
+    min-width: 100vw;
+    max-height: 400px;
+    filter: contrast(110%) blur(4px);
+  }
+
+  .clippedLogo {
+    width: 248px;
+    height: 248px;
+    margin-right: var(--spacing-9);
+    mask: url("../../public/l-logo.svg");
+    mask-repeat: no-repeat;
+    object-fit: cover;
+    mask-position: center;
+    mask-size: 248px;
+    filter: opacity(80%);
+  }
+
+  .blue {
+    color: var(--color-hl-blue);
+  }
+}
