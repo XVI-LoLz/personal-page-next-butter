@@ -21,6 +21,7 @@
   --spacing-8: calc(var(--spacing-1) * 8);
   --spacing-9: calc(var(--spacing-1) * 9);
   --spacing-10: calc(var(--spacing-1) * 10);
+  --spacing-11: calc(var(--spacing-1) * 11);
 
   --em-size-xs: 0.75em;
   --em-size-s: 0.875em;

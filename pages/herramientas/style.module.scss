@@ -1,0 +1,11 @@
+.Modifier.Modifier {
+  .toolSection {
+    margin-bottom: var(--spacing-3);
+    .toolContainer {
+      max-width: 824px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-5);
+    }
+  }
+}

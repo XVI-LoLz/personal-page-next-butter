@@ -7,6 +7,20 @@ Fixed
 Security
 ---
 
+## [0.4.1] - 2021-06-12
+### Fixed
+- Static build paths
+
+## [0.4.0] - 2021-06-12
+### Added
+- Tools and Resources pages and slug logic
+- Main app remaining components
+- Tool images as alternative for file url
+- Util methods to parse pages and types
+
+### Fixed
+- Page id as slug fallback
+
 ## [0.3.0] - 2021-06-11
 ### Added
 - Home page and Blog slug render logic

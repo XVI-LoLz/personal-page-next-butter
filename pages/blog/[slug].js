@@ -38,8 +38,6 @@ export const getStaticProps = async ({ params }) => {
 
   const match = pages.find(({ slug }) => slug === params.slug);
   const recordMap = await notionX.getPage(match.id);
-  // const contentTable = getPageTableOfContents(match, recordMap);
-  // console.log("content table: ", contentTable);
 
   return {
     props: {
@@ -64,7 +62,7 @@ export async function getStaticPaths() {
 
     const posts = pages.map((page) => getPageInfo(page));
     const publishedPosts = posts.filter(({ published }) => published);
-    const paths = publishedPosts.map((el) => el.slug);
+    const paths = publishedPosts.map(({ slug }) => `/blog/${slug}`);
     return {
       paths,
       fallback: true,
