@@ -41,4 +41,6 @@ const getPageInfo = (page) => {
   return info;
 };
 
-export { getPageInfo };
+const getCondensedPages = (pages) => pages.map((page) => getPageInfo(page));
+
+export { getPageInfo, getCondensedPages };

@@ -1,9 +1,13 @@
 import { notionAPI } from "./client";
+import { getPageInfo } from "./page";
 
-const queryDatabase = async ({ id }) => {
+const queryDatabase = async ({ id, condensed }) => {
   const { results } = await notionAPI.databases.query({
     database_id: id,
   });
+  if (condensed) {
+    return results.map((res) => getPageInfo(res));
+  }
   return results;
 };
 
