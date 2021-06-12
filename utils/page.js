@@ -43,4 +43,12 @@ const getPageInfo = (page) => {
 
 const getCondensedPages = (pages) => pages.map((page) => getPageInfo(page));
 
-export { getPageInfo, getCondensedPages };
+const getTypesAndOccurrences = (pages) => {
+  const types = {};
+  pages.forEach(({ type }) => {
+    types[type] = (types[type] || 0) + 1;
+  });
+  return Object.entries(types);
+};
+
+export { getPageInfo, getCondensedPages, getTypesAndOccurrences };
