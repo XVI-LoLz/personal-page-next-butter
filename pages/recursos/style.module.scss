@@ -1,0 +1,7 @@
+.Modifier.Modifier {
+  .resourcesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-5);
+  }
+}

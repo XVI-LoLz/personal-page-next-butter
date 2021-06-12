@@ -38,8 +38,6 @@ export const getStaticProps = async ({ params }) => {
 
   const match = pages.find(({ slug }) => slug === params.slug);
   const recordMap = await notionX.getPage(match.id);
-  // const contentTable = getPageTableOfContents(match, recordMap);
-  // console.log("content table: ", contentTable);
 
   return {
     props: {
