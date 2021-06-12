@@ -1,0 +1,38 @@
+.Modifier.Modifier {
+  display: grid;
+  grid-template-rows: var(--banner-height) 1fr;
+  grid-template-columns: 1fr [content-start] 880px [content-end sidebar-start] 240px [sidebar-end] 1fr;
+  .banner {
+    grid-column: 1 / -1;
+  }
+  .content {
+    grid-column: content-start / content-end;
+    max-width: 824px;
+    height: fit-content;
+    .postsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-3);
+    }
+  }
+  .sidebar {
+    grid-column: sidebar-start / sidebar-end;
+    height: fit-content;
+    h1 {
+      text-align: right;
+    }
+  }
+  .tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--spacing-1);
+  }
+
+  .card-container {
+    display: inline-flex;
+    width: fit-content;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+  }
+}
