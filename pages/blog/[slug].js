@@ -24,7 +24,8 @@ export default function NotionPage({ recordMap }) {
       </Head>
 
       <Page>
-        <NotionRenderer recordMap={recordMap} fullPage darkMode={false} />
+        <h1>{title}</h1>
+        <NotionRenderer recordMap={recordMap} fullPage showTableOfContents />
       </Page>
     </>
   );

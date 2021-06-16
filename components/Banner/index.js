@@ -7,9 +7,9 @@ export default function Banner() {
         <img className={style.clippedLogo} src="images/me.jpg" alt="logo" />
         <div className={style.description}>
           <header className={style.header}>
-            Hola, soy <span className={style.blue}>LoLz</span>
+            Hola, soy <span className={style.name}>LoLz</span>
           </header>
-          <h1 className={style.introduction}>Web/Game Dev & Streamer.</h1>
+          <p className={style.introduction}>Web/Game Dev & Streamer.</p>
           <a
             className={style.cta}
             href="https://16th.me/twitch"

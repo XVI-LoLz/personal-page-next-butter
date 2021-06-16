@@ -8,7 +8,10 @@ import Card from "components/Card";
 import { getPageInfo } from "utils/page";
 import { queryDatabase } from "utils/queries";
 
-import style from "./homePage.module.scss";
+import style from "styles/modifiers/home.module.scss";
+
+// TODO Add banner carousel functionality
+// TODO Add top tags functionality
 
 export default function Home({ posts }) {
   return (
@@ -22,7 +25,7 @@ export default function Home({ posts }) {
       <section className={style.postsContainer}>
         {posts.map((post) => (
           <Link key={post.id} href="/blog/[slug]" as={`/blog/${post.slug}`}>
-            <a>
+            <a title="Ir al artículo">
               <Card header={post.title}>{post.description}</Card>
             </a>
           </Link>
