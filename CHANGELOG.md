@@ -7,9 +7,16 @@ Fixed
 Security
 ---
 
+## [0.4.3] - 2021-06-17
+
+### Fixed
+
+- Main page posts query
+
 ## [0.4.2] - 2021-06-16
 
 ### Added
+
 - Created/Edited time to posts
 - Info and HL styled components
 - Notion override for styles
