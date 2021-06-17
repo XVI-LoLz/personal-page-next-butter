@@ -14,21 +14,23 @@
 
   .descriptionContainer .description {
     text-transform: uppercase;
-    font-weight: var(--wight-bold);
+    font-weight: var(--weight-bold);
 
     .header {
       font-size: var(--em-size-ml);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
     .introduction {
       font-size: var(--em-size-xl);
       max-width: 448px;
       margin-bottom: var(--spacing-2);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
     .cta {
       cursor: pointer;
       text-transform: inherit;
-      color: inherit;
       padding: var(--spacing-1) var(--spacing-2);
+      color: inherit;
       background-color: var(--color-hl-purple);
       border-radius: var(--spacing-h);
     }
@@ -48,15 +50,15 @@
     width: 248px;
     height: 248px;
     margin-right: var(--spacing-9);
-    mask: url("../../public/l-logo.svg");
+    mask: var(--l-logo);
     mask-repeat: no-repeat;
     object-fit: cover;
     mask-position: center;
     mask-size: 248px;
-    filter: opacity(80%);
+    filter: saturate(0%) opacity(90%) drop-shadow(0 0 0 #e87d70);
   }
 
-  .blue {
+  .name {
     color: var(--color-hl-blue);
   }
 }

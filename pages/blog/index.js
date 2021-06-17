@@ -4,17 +4,17 @@ import Link from "next/link";
 import { getTypesAndOccurrences } from "utils/page";
 import { getCondensedDatabase } from "utils/queries";
 
-import style from "./blogPage.module.scss";
+import style from "styles/modifiers/blog.module.scss";
 
 export default function Blog({ posts, types }) {
   return (
     <Page className={style}>
       {types.map(([name, occurrences]) => (
         <section key={name}>
-          <header>
-            <h1>{name}</h1>
-            <h4>Artículos: {occurrences}</h4>
-          </header>
+          <h1>{name}</h1>
+          <h2>
+            {occurrences} {occurrences > 1 ? "Artículos" : "Artículo"}
+          </h2>
           <div className={style.postsContainer}>
             {posts
               .filter(({ type }) => type === name)
@@ -24,7 +24,7 @@ export default function Blog({ posts, types }) {
                   href="/blog/[slug]"
                   as={`/blog/${post.slug}`}
                 >
-                  <a>
+                  <a title="Ir al artículo">
                     <Card header={post.title}>{post.description}</Card>
                   </a>
                 </Link>
@@ -47,7 +47,7 @@ export const getStaticProps = async () => {
 
     return {
       props: {
-        posts,
+        posts: publishedPosts,
         types,
       },
     };

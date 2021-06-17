@@ -8,4 +8,9 @@
       gap: var(--spacing-5);
     }
   }
+  h2 {
+    font-size: var(--em-size-s);
+    margin-bottom: var(--spacing-2);
+    color: var(--color-fg-secondary);
+  }
 }

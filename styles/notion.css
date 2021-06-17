@@ -58,22 +58,56 @@
   --notion-header-height: 45px; */
 }
 
-.notion-header {
-  display: none;
-}
-
-.notion-asset-wrapper.notion-asset-wrapper-image {
-  padding: var(--spacing-2);
-  border: 1px solid var(--color-fg-primary);
-  border-radius: var(--spacing-h);
-  width: fit-content;
-  min-width: unset;
-}
-
 .notion-viewport {
   top: var(--navbar-height);
 }
 
+.notion-frame {
+  width: fit-content;
+}
+
 .notion-page {
   margin: 0;
+  padding: 0;
+}
+.notion-page.notion-page-no-cover {
+  /* override default notion important */
+  margin: 0 !important;
+}
+
+.notion-header,
+.notion-title {
+  display: none;
+}
+
+.notion-asset-wrapper.notion-asset-wrapper-image {
+  position: relative;
+  border: 1px solid var(--color-fg-primary);
+  border-radius: 0 var(--spacing-h) 0 var(--spacing-h);
+  width: fit-content;
+  min-width: unset;
+}
+
+.notion-asset-wrapper.notion-asset-wrapper-image:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+  border: 1px solid var(--color-hl-blue);
+  border-radius: 0 var(--spacing-1) 0 var(--spacing-1);
+}
+
+.notion-asset-wrapper.notion-asset-wrapper-image div,
+.notion-asset-wrapper.notion-asset-wrapper-image div img {
+  border-radius: 0 var(--spacing-q) 0 var(--spacing-q);
+}
+
+.notion-aside-table-of-contents-header {
+  visibility: hidden;
+}
+.notion-aside-table-of-contents-header::before {
+  visibility: visible;
+  content: "Tabla de contenido";
 }

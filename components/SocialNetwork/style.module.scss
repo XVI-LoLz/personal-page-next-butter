@@ -1,13 +1,16 @@
 .SocialNetwork {
   display: flex;
   align-items: center;
+  > *:hover {
+    color: var(--color-hl-blue);
+  }
   > *:not(:last-child) {
     margin-right: var(--spacing-1);
   }
+}
 
-  .icon {
-  }
-
-  .label {
+.twitch {
+  > *:hover {
+    color: var(--color-hl-purple);
   }
 }

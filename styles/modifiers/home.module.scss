@@ -1,3 +1,5 @@
+@import "styles/mixins";
+
 .Modifier.Modifier {
   display: grid;
   grid-template-rows: var(--banner-height) 1fr;
@@ -9,6 +11,14 @@
     grid-column: content-start / content-end;
     max-width: 824px;
     height: fit-content;
+    margin: 0;
+    h1 {
+      text-align: center;
+      &::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
     .postsContainer {
       display: flex;
       flex-wrap: wrap;
@@ -20,6 +30,10 @@
     height: fit-content;
     h1 {
       text-align: right;
+      &::after {
+        left: unset;
+        right: 0;
+      }
     }
   }
   .tag-container {

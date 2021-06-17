@@ -4,20 +4,23 @@ import Tool from "components/Tool";
 import { getCondensedDatabase } from "utils/queries";
 import { getTypesAndOccurrences } from "utils/page";
 
-import style from "./style.module.scss";
+import { Info, HL } from "styles/components";
+import style from "styles/modifiers/herramientas.module.scss";
 
 export default function Herramientas({ tools, types }) {
   return (
     <Page className={style}>
-      <p>
-        En esta sección encontrarás recomendaciones de software para realizar
-        diversas tareas.
-      </p>
+      <Info align="center">
+        En esta sección encontrarás <HL>recomendaciones de software</HL> para
+        realizar diversas tareas.
+      </Info>
       <div>
         {types.map(([name, occurrences]) => (
           <section key={name} className={style.toolSection}>
             <h1>Software para {name}</h1>
-            <h4>Herramientas {occurrences}</h4>
+            <h2>
+              {occurrences} {occurrences > 1 ? "Herramientas" : "Herramienta"}
+            </h2>
             <div className={style.toolContainer}>
               {tools
                 .filter((tool) => tool.type === name)
