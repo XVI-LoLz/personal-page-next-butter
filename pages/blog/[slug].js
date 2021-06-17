@@ -1,19 +1,25 @@
 import React from "react";
 import Head from "next/head";
-
 import { getPageTitle } from "notion-utils";
 import { NotionRenderer } from "react-notion-x";
-import { queryDatabase } from "utils/queries";
+
+import Page from "components/Page";
+
+import { getCondensedDatabase } from "utils/queries";
 import { getPageInfo } from "utils/page";
 import { notionX } from "utils/client";
-import Page from "components/Page";
+
+import style from "styles/modifiers/blog.module.scss";
 
 const isDev = process.env.NODE_ENV === "development" || !process.env.NODE_ENV;
 
-export default function NotionPage({ recordMap }) {
-  if (!recordMap) {
+export default function NotionPage({ post, recordMap }) {
+  if (!recordMap && !post) {
     return null;
   }
+  const { createdTime, lastEditedTime } = post;
+  const [created] = createdTime.split("T");
+  const [edited] = lastEditedTime.split("T");
 
   const title = getPageTitle(recordMap);
 
@@ -23,8 +29,13 @@ export default function NotionPage({ recordMap }) {
         <title>{title}</title>
       </Head>
 
-      <Page>
-        <h1>{title}</h1>
+      <Page className={style}>
+        <header>
+          <h1>{title}</h1>
+          <h2 title={`Creado: ${created}`}>
+            {created === edited ? `Creado: ${created}` : `Editado: ${edited}`}
+          </h2>
+        </header>
         <NotionRenderer recordMap={recordMap} fullPage showTableOfContents />
       </Page>
     </>
@@ -32,16 +43,18 @@ export default function NotionPage({ recordMap }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const pages = await queryDatabase({
+  const pages = await getCondensedDatabase({
     id: process.env.NOTION_BLOG_ID,
     condensed: true,
   });
 
   const match = pages.find(({ slug }) => slug === params.slug);
   const recordMap = await notionX.getPage(match.id);
+  console.log(match);
 
   return {
     props: {
+      post: match,
       recordMap,
     },
     revalidate: 10800,
@@ -57,7 +70,7 @@ export async function getStaticPaths() {
   }
 
   try {
-    const pages = await queryDatabase({
+    const pages = await getCondensedDatabase({
       id: process.env.NOTION_BLOG_ID,
     });
 
