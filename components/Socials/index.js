@@ -1,8 +1,8 @@
 import SocialNetwork from "components/SocialNetwork";
 
-import style from "./style.module.scss";
-
 import { socials } from "./constants";
+
+import style from "./style.module.scss";
 
 export default function Socials() {
   return (

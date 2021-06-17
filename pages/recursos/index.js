@@ -4,21 +4,31 @@ import Resource from "components/Resource";
 import { getTypesAndOccurrences } from "utils/page";
 import { getCondensedDatabase } from "utils/queries";
 
-import style from "./style.module.scss";
+import { Info, HL } from "styles/components";
+import style from "styles/modifiers/recursos.module.scss";
+
+const getLabel = (occurrences, name) => {
+  const multiple = occurrences > 1;
+  const getName = () => {
+    if (name === "Canales") return multiple ? "Canales" : "Canal";
+    if (name === "Plataformas") return multiple ? "Plataformas" : "Plataforma";
+    return null;
+  };
+  return `${occurrences} ${getName()}`;
+};
 
 export default function Recursos({ resources, types }) {
   return (
     <Page className={style}>
-      <p>
-        En esta sección encontrarás recomendaciones de{" "}
-        <span>plataformas, canales y otros sitios</span> que pueden ayudarte a{" "}
-        <span>aprender</span> y <span>practicar</span> conceptos de
-        programación.
-      </p>
-      {types.map(([name, occurences]) => (
+      <Info align="center">
+        En esta sección encontrarás links a{" "}
+        <HL>plataformas, canales y otros sitios</HL> que pueden ayudarte a{" "}
+        <HL>aprender</HL> y <HL>practicar</HL> conceptos de programación
+      </Info>
+      {types.map(([name, occurrences]) => (
         <section key={name}>
           <h1>{name}</h1>
-          <h4>{occurences}</h4>
+          <h2>{getLabel(occurrences, name)}</h2>
           <div className={style.resourcesContainer}>
             {resources
               .filter(({ type }) => type === name)
