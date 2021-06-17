@@ -70,11 +70,10 @@ export async function getStaticPaths() {
   }
 
   try {
-    const pages = await getCondensedDatabase({
+    const posts = await getCondensedDatabase({
       id: process.env.NOTION_BLOG_ID,
     });
 
-    const posts = pages.map((page) => getPageInfo(page));
     const publishedPosts = posts.filter(({ published }) => published);
     const paths = publishedPosts.map(({ slug }) => `/blog/${slug}`);
     return {
