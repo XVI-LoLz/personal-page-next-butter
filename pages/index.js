@@ -6,7 +6,7 @@ import ProjectCard from "components/ProjectCard";
 import Card from "components/Card";
 
 import { getPageInfo } from "utils/page";
-import { queryDatabase } from "utils/queries";
+import { getCondensedDatabase } from "utils/queries";
 
 import style from "styles/modifiers/home.module.scss";
 
@@ -50,7 +50,7 @@ const Sidebar = () => (
 
 export const getStaticProps = async () => {
   try {
-    const pages = await queryDatabase({
+    const pages = await getCondensedDatabase({
       id: process.env.NOTION_BLOG_ID,
     });
 
