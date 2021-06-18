@@ -3,6 +3,7 @@ import Tool from "components/Tool";
 
 import { getCondensedDatabase } from "utils/queries";
 import { getTypesAndOccurrences } from "utils/page";
+import { threeHours } from "utils/revalidation";
 
 import { Info, HL } from "styles/components";
 import style from "styles/modifiers/herramientas.module.scss";
@@ -49,6 +50,7 @@ export const getStaticProps = async () => {
         tools: publishedTools,
         types,
       },
+      revalidate: threeHours,
     };
   } catch (e) {
     console.error(e);

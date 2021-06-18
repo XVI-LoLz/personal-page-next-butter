@@ -7,6 +7,7 @@ import Page from "components/Page";
 
 import { getCondensedDatabase } from "utils/queries";
 import { notionX } from "utils/client";
+import { threeHours } from "utils/revalidation";
 
 import style from "styles/modifiers/blog.module.scss";
 
@@ -55,7 +56,7 @@ export const getStaticProps = async ({ params }) => {
       post: match,
       recordMap,
     },
-    revalidate: 10800,
+    revalidate: threeHours,
   };
 };
 
