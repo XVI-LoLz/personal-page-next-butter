@@ -5,8 +5,8 @@ import Banner from "components/Banner";
 import ProjectCard from "components/ProjectCard";
 import Card from "components/Card";
 
-import { getPageInfo } from "utils/page";
 import { getCondensedDatabase } from "utils/queries";
+import { threeHours } from "utils/revalidation";
 
 import style from "styles/modifiers/home.module.scss";
 
@@ -58,6 +58,7 @@ export const getStaticProps = async () => {
 
     return {
       props: { posts: publishedPosts },
+      revalidate: threeHours,
     };
   } catch (e) {
     console.error(e);

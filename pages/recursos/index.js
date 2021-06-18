@@ -3,6 +3,7 @@ import Resource from "components/Resource";
 
 import { getTypesAndOccurrences } from "utils/page";
 import { getCondensedDatabase } from "utils/queries";
+import { threeHours } from "utils/revalidation";
 
 import { Info, HL } from "styles/components";
 import style from "styles/modifiers/recursos.module.scss";
@@ -56,6 +57,7 @@ export const getStaticProps = async () => {
         resources,
         types,
       },
+      revalidate: threeHours,
     };
   } catch (e) {
     console.error(e);
