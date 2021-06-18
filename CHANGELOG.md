@@ -7,6 +7,13 @@ Fixed
 Security
 ---
 
+## [0.5.0] - 2021-06-18
+
+### Added
+
+- Recursos slug pages logic
+- Revalidation every three hours
+
 ## [0.4.4] - 2021-06-18
 
 ### Changed
