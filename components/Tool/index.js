@@ -9,20 +9,19 @@ import style from "./style.module.scss";
 export default function Tool({
   id,
   slug,
-  files,
   title,
   url,
+  logoUrl,
   type,
   description,
 }) {
-  const logo = files?.[0] || {};
   return (
     <article className={cn(style.Tool, title)}>
       <div className={style.toolLogoContainer}>
         <a title="Ir al sitio" href={url} target="_blank" rel="noreferrer">
           <img
             className={style.toolLogo}
-            src={`tools/${logo}`}
+            src={logoUrl}
             alt={`${slug}-logo`}
             width={80}
           />
@@ -46,16 +45,20 @@ export default function Tool({
 
 Tool.propTypes = {
   id: PropTypes.string.isRequired,
-  files: PropTypes.arrayOf(PropTypes.string),
+  // files: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
+  url: PropTypes.string,
+  logoUrl: PropTypes.string,
   slug: PropTypes.string,
   type: PropTypes.string,
   description: PropTypes.string,
 };
 
 Tool.defaultProps = {
-  files: [],
+  // files: [],
   title: null,
+  url: "",
+  logoUrl: "",
   slug: null,
   type: null,
   description: null,
