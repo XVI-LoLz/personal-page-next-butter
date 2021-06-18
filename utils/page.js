@@ -12,6 +12,11 @@ const getContentByPropType = (prop) => {
       return value?.map((el) => el.id);
     case "select":
       return value?.name || "";
+    case "formula":
+      if (value.type === "string") {
+        return value?.string || "";
+      }
+      return value;
     case "url":
     case "date":
     case "number":
