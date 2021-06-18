@@ -5,6 +5,7 @@ import { getTypesAndOccurrences } from "utils/page";
 import { getCondensedDatabase } from "utils/queries";
 
 import style from "styles/modifiers/blog.module.scss";
+import { threeHours } from "utils/revalidation";
 
 export default function Blog({ posts, types }) {
   return (
@@ -50,6 +51,7 @@ export const getStaticProps = async () => {
         posts: publishedPosts,
         types,
       },
+      revalidate: threeHours,
     };
   } catch (e) {
     console.error(e);
