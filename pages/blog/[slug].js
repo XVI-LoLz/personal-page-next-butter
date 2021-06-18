@@ -6,7 +6,6 @@ import { NotionRenderer } from "react-notion-x";
 import Page from "components/Page";
 
 import { getCondensedDatabase } from "utils/queries";
-import { getPageInfo } from "utils/page";
 import { notionX } from "utils/client";
 
 import style from "styles/modifiers/blog.module.scss";
@@ -50,7 +49,6 @@ export const getStaticProps = async ({ params }) => {
 
   const match = pages.find(({ slug }) => slug === params.slug);
   const recordMap = await notionX.getPage(match.id);
-  console.log(match);
 
   return {
     props: {
