@@ -43,7 +43,7 @@ export default function NotionPage({ post, recordMap }) {
 
 export const getStaticProps = async ({ params }) => {
   const pages = await getCondensedDatabase({
-    id: process.env.NOTION_BLOG_ID,
+    id: process.env.NOTION_TOOLS_ID,
     condensed: true,
   });
 
@@ -69,11 +69,11 @@ export async function getStaticPaths() {
 
   try {
     const posts = await getCondensedDatabase({
-      id: process.env.NOTION_BLOG_ID,
+      id: process.env.NOTION_TOOLS_ID,
     });
 
     const publishedPosts = posts.filter(({ published }) => published);
-    const paths = publishedPosts.map(({ slug }) => `/blog/${slug}`);
+    const paths = publishedPosts.map(({ slug }) => `/herramientas/${slug}`);
     return {
       paths,
       fallback: true,
