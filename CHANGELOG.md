@@ -7,6 +7,12 @@ Fixed
 Security
 ---
 
+## [0.4.4] - 2021-06-18
+
+### Changed
+
+- Use notion url column for tools image source instead of local files
+
 ## [0.4.3] - 2021-06-17
 
 ### Fixed
