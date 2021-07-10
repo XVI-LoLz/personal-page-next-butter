@@ -9,16 +9,16 @@ export const routes = [
     en: "blog",
     es: "blog",
   },
-  {
-    route: "/recursos",
-    en: "resources",
-    es: "recursos",
-  },
-  {
-    route: "/herramientas",
-    en: "tools",
-    es: "herramientas",
-  },
+  // {
+  //   route: "/recursos",
+  //   en: "resources",
+  //   es: "recursos",
+  // },
+  // {
+  //   route: "/herramientas",
+  //   en: "tools",
+  //   es: "herramientas",
+  // },
   // {
   //   route: "/setup",
   //   en: "setup",

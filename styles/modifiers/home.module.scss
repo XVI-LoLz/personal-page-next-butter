@@ -19,11 +19,6 @@
         transform: translateX(-50%);
       }
     }
-    .postsContainer {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--spacing-3);
-    }
   }
   .sidebar {
     grid-column: sidebar-start / sidebar-end;
