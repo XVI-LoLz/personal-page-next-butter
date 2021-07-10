@@ -7,6 +7,20 @@ Fixed
 Security
 ---
 
+## [0.6.0] - 2021-07-10
+
+### Added
+
+- Blog posts styling and table of contents
+- Custom styled components
+- Support for ButterCMS
+- Components to render new data structures
+
+### Removed
+
+- Resources and Tools pages
+- Support for Notion as a CMS
+
 ## [0.5.0] - 2021-06-18
 
 ### Added

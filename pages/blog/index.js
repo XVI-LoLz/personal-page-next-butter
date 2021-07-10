@@ -1,34 +1,24 @@
 import Card from "components/Card";
 import Page from "components/Page";
 import Link from "next/link";
-import { getTypesAndOccurrences } from "utils/page";
-import { getCondensedDatabase } from "utils/queries";
+
+import { getAllBlogCategories, getAllPostsWithSlug } from "lib/buttercms";
 
 import style from "styles/modifiers/blog.module.scss";
-import { threeHours } from "utils/revalidation";
+import { Header } from "styled-components";
+import PostCard from "components/PostCard";
 
-export default function Blog({ posts, types }) {
+export default function Blog({ posts, categories }) {
   return (
     <Page className={style}>
-      {types.map(([name, occurrences]) => (
-        <section key={name}>
-          <h1>{name}</h1>
-          <h2>
-            {occurrences} {occurrences > 1 ? "Artículos" : "Artículo"}
-          </h2>
-          <div className={style.postsContainer}>
+      {categories.map(({ name, slug }) => (
+        <section key={slug}>
+          <Header>{name}</Header>
+          <div className="posts-container">
             {posts
-              .filter(({ type }) => type === name)
+              .filter((post) => post.categories.find((c) => c.slug === slug))
               .map((post) => (
-                <Link
-                  key={post.id}
-                  href="/blog/[slug]"
-                  as={`/blog/${post.slug}`}
-                >
-                  <a title="Ir al artículo">
-                    <Card header={post.title}>{post.description}</Card>
-                  </a>
-                </Link>
+                <PostCard key={post.created} {...post} />
               ))}
           </div>
         </section>
@@ -38,26 +28,10 @@ export default function Blog({ posts, types }) {
 }
 
 export const getStaticProps = async () => {
-  try {
-    const posts = await getCondensedDatabase({
-      id: process.env.NOTION_BLOG_ID,
-    });
-
-    const publishedPosts = posts.filter(({ published }) => published);
-    const types = getTypesAndOccurrences(publishedPosts);
-
-    return {
-      props: {
-        posts: publishedPosts,
-        types,
-      },
-      revalidate: threeHours,
-    };
-  } catch (e) {
-    console.error(e);
-  }
+  const posts = (await getAllPostsWithSlug()) || [];
+  const categories = (await getAllBlogCategories()) || [];
 
   return {
-    props: { posts: [] },
+    props: { posts, categories },
   };
 };

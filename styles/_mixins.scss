@@ -14,3 +14,9 @@
     background-color: var(--color-fg-primary);
   }
 }
+
+@mixin separateHorizontally($margin) {
+  > :not(:last-child) {
+    margin-right: $margin;
+  }
+}

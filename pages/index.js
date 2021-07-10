@@ -1,70 +1,45 @@
-import Link from "next/link";
+import { getAllPostsForHome, getProjectsForHome } from "lib/buttercms";
 
 import Page from "components/Page";
 import Banner from "components/Banner";
 import ProjectCard from "components/ProjectCard";
-import Card from "components/Card";
-
-import { getCondensedDatabase } from "utils/queries";
-import { threeHours } from "utils/revalidation";
+import MorePosts from "components/MorePosts";
+import Header from "styled-components/Header";
 
 import style from "styles/modifiers/home.module.scss";
 
 // TODO Add banner carousel functionality
 // TODO Add top tags functionality
 
-export default function Home({ posts }) {
+export default function Home({ allPosts, projects }) {
   return (
     <Page
       className={style}
       banner={<Banner />}
-      sidebar={<Sidebar />}
+      sidebar={<Sidebar projects={projects} />}
       hideWhitespace
     >
-      <h1>Del blog</h1>
-      <section className={style.postsContainer}>
-        {posts.map((post) => (
-          <Link key={post.id} href="/blog/[slug]" as={`/blog/${post.slug}`}>
-            <a title="Ir al artículo">
-              <Card header={post.title}>{post.description}</Card>
-            </a>
-          </Link>
-        ))}
-      </section>
+      <Header>Del blog</Header>
+      <MorePosts posts={allPosts} />
     </Page>
   );
 }
 
-const Sidebar = () => (
-  <>
-    <h1>Otros proyectos</h1>
-    <section>
-      <ProjectCard
-        href="https://proyecto-jp.netlify.app/"
-        src="images/proyecto-jp.jpg"
-        label="Proyecto JP"
-      />
-    </section>
-  </>
+const Sidebar = ({ projects = [] }) => (
+  <section>
+    <Header>Otros proyectos</Header>
+    <div className="projects-container">
+      {projects.map((project) => (
+        <ProjectCard key={project.meta.id} {...project} />
+      ))}
+    </div>
+  </section>
 );
 
-export const getStaticProps = async () => {
-  try {
-    const posts = await getCondensedDatabase({
-      id: process.env.NOTION_BLOG_ID,
-    });
-
-    const publishedPosts = posts.filter(({ published }) => published);
-
-    return {
-      props: { posts: publishedPosts },
-      revalidate: threeHours,
-    };
-  } catch (e) {
-    console.error(e);
-  }
-
+export async function getStaticProps({ preview = null }) {
+  const allPosts = (await getAllPostsForHome(preview)) || [];
+  const projects = (await getProjectsForHome()) || [];
   return {
-    props: { posts: [] },
+    props: { allPosts, preview, projects },
   };
-};
+}
