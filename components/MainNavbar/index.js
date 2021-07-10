@@ -15,7 +15,7 @@ export default function MainNavbar() {
     <nav className={style.MainNavbar}>
       <Logo className={style.logo} />
       <ul className={style.links}>
-        {routes.map(({ route, es }, i) => (
+        {routes?.map(({ route, es }, i) => (
           <li key={i}>
             <Link href={route}>
               <a

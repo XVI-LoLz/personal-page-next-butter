@@ -29,7 +29,7 @@ const Sidebar = ({ projects = [] }) => (
   <section>
     <Header>Otros proyectos</Header>
     <div className="projects-container">
-      {projects.map((project) => (
+      {projects?.map((project) => (
         <ProjectCard key={project.meta.id} {...project} />
       ))}
     </div>

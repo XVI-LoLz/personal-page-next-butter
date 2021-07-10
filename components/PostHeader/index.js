@@ -1,14 +1,15 @@
+import PropTypes from "prop-types";
 import Date from "components/Date";
 import PostTitle from "components/PostTitle";
 
-export default function PostHeader({ title, updated, tags, showTags }) {
+export default function PostHeader({ title, updated, tags }) {
   return (
     <div>
       <PostTitle>{title}</PostTitle>
       <footer className="post-subtitle">
-        <Date dateString={updated} />
+        {updated && <Date dateString={updated} />}
         <div className="tags-container">
-          {tags.map(({ name }) => (
+          {tags?.map(({ name }) => (
             <span key={name}>{name}</span>
           ))}
         </div>
@@ -16,3 +17,15 @@ export default function PostHeader({ title, updated, tags, showTags }) {
     </div>
   );
 }
+
+PostHeader.propTypes = {
+  title: PropTypes.string,
+  updated: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+PostHeader.defaultProps = {
+  title: "",
+  updated: "",
+  tags: [],
+};

@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,12 +9,17 @@ const blogBreadcrumbs = [
 ];
 
 export default function PostBreadcrumbs({ post }) {
-  const { categories } = post;
+  const { categories = [] } = post || {};
   const [mainCategory] = categories;
-  const breadcrumbs = [
-    ...blogBreadcrumbs,
-    { label: mainCategory.name, href: `/blog?category=${mainCategory.slug}` },
-  ];
+  const breadcrumbs = mainCategory
+    ? [
+        ...blogBreadcrumbs,
+        {
+          label: mainCategory.name,
+          href: `/blog?category=${mainCategory.slug}`,
+        },
+      ]
+    : blogBreadcrumbs;
 
   const Breadcrumb = ({ label, href }) => (
     <Link href={href}>
@@ -23,7 +29,7 @@ export default function PostBreadcrumbs({ post }) {
 
   return (
     <div className="breadcrumbs">
-      {breadcrumbs.map((breadcrumb, i) => (
+      {breadcrumbs?.map((breadcrumb, i) => (
         <Fragment key={breadcrumb.label}>
           {i > 0 ? (
             <Image
@@ -39,3 +45,11 @@ export default function PostBreadcrumbs({ post }) {
     </div>
   );
 }
+
+PostBreadcrumbs.propTypes = {
+  post: PropTypes.shape({ categories: PropTypes.arrayOf(PropTypes.shape({})) }),
+};
+
+PostBreadcrumbs.defaultProps = {
+  post: {},
+};

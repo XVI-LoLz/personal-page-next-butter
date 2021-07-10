@@ -1,23 +1,23 @@
-import Card from "components/Card";
-import Page from "components/Page";
-import Link from "next/link";
+import PropTypes from "prop-types";
 
 import { getAllBlogCategories, getAllPostsWithSlug } from "lib/buttercms";
 
-import style from "styles/modifiers/blog.module.scss";
-import { Header } from "styled-components";
+import Page from "components/Page";
 import PostCard from "components/PostCard";
+import { Header } from "styled-components";
 
-export default function Blog({ posts, categories }) {
+import style from "styles/modifiers/blog.module.scss";
+
+export default function BlogPage({ posts, categories }) {
   return (
     <Page className={style}>
-      {categories.map(({ name, slug }) => (
+      {categories?.map(({ name, slug }) => (
         <section key={slug}>
           <Header>{name}</Header>
           <div className="posts-container">
             {posts
               .filter((post) => post.categories.find((c) => c.slug === slug))
-              .map((post) => (
+              ?.map((post) => (
                 <PostCard key={post.created} {...post} />
               ))}
           </div>
@@ -26,6 +26,15 @@ export default function Blog({ posts, categories }) {
     </Page>
   );
 }
+BlogPage.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape({})),
+  categories: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+BlogPage.defaultProps = {
+  posts: [],
+  categories: [],
+};
 
 export const getStaticProps = async () => {
   const posts = (await getAllPostsWithSlug()) || [];
