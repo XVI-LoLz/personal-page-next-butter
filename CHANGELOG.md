@@ -7,6 +7,12 @@ Fixed
 Security
 ---
 
+## [0.7.0] - 2021-07-10
+
+### Added
+
+- Revalidation to static props
+
 ## [0.6.0] - 2021-07-10
 
 ### Added
