@@ -1,18 +1,5 @@
 .Modifier.Modifier {
   .content {
     margin: 0;
-    h1 {
-      margin-bottom: var(--spacing-2);
-    }
-    h2 {
-      font-size: var(--em-size-s);
-      margin-bottom: var(--spacing-2);
-      color: var(--color-fg-secondary);
-    }
-    .postsContainer {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--spacing-3);
-    }
   }
 }

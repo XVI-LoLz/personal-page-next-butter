@@ -1,90 +1,110 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
-import { getPageTitle } from "notion-utils";
-import { NotionRenderer } from "react-notion-x";
+import ErrorPage from "next/error";
+import { useRouter } from "next/router";
+import kebabCase from "lodash.kebabcase";
+
+import { getAllPostsWithSlug, getPostAndMorePosts } from "lib/buttercms";
 
 import Page from "components/Page";
-
-import { getCondensedDatabase } from "utils/queries";
-import { notionX } from "utils/client";
-import { threeHours } from "utils/revalidation";
+import PostHeader from "components/PostHeader";
+import PostBody from "components/PostBody";
+import MorePosts from "components/MorePosts";
 
 import style from "styles/modifiers/blog.module.scss";
+import Link from "next/link";
+import useScrollToHashOnLoad from "hooks/use-hash-on-load";
+import PostBreadcrumbs from "components/PostBreadcrumbs";
 
-const isDev = process.env.NODE_ENV === "development" || !process.env.NODE_ENV;
+export default function NotionPage({ post, morePosts, preview }) {
+  const [improved, setImproved] = useState(post);
+  const [toc, setTOC] = useState([]);
+  const router = useRouter();
 
-export default function NotionPage({ post, recordMap }) {
-  if (!recordMap && !post) {
-    return null;
+  useEffect(() => {
+    if (post?.body) {
+      const nodes = [];
+      const doc = new DOMParser().parseFromString(post?.body, "text/html");
+      const headers = doc.querySelectorAll("h1,h2,h3,h4,h5,h6");
+
+      headers.forEach((h, i) => {
+        // eslint-disable-next-line no-param-reassign
+        h.id = kebabCase(i + h.innerHTML);
+        nodes.push({
+          type: h.nodeName,
+          label: h.innerHTML,
+          slug: h.id,
+          indent: h.nodeName.replace("H", ""),
+        });
+      });
+      setTOC(nodes);
+      setImproved(doc.body.innerHTML);
+    }
+  }, [post.body]);
+
+  if (!router.isFallback && !post?.slug) {
+    return <ErrorPage statusCode={404} />;
   }
-  const { createdTime, lastEditedTime } = post;
-  const [created] = createdTime.split("T");
-  const [edited] = lastEditedTime.split("T");
-
-  const title = getPageTitle(recordMap);
 
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{post.title} | Blog</title>
+        <meta property="og:image" content={post.featured_image} />
       </Head>
 
-      <Page className={style}>
-        <header>
-          <h1>{title}</h1>
-          <h2 title={`Creado: ${created}`}>
-            {created === edited ? `Creado: ${created}` : `Editado: ${edited}`}
-          </h2>
-        </header>
-        <NotionRenderer recordMap={recordMap} fullPage showTableOfContents />
+      <Page className={style} sidebar={<TableOfContents content={toc} />}>
+        <article>
+          <PostBreadcrumbs post={post} />
+          <PostHeader {...post} />
+          <PostBody content={improved} />
+        </article>
+        {morePosts.length > 0 && (
+          <section className="more-posts">
+            <h1>Más artículos</h1>
+            <MorePosts posts={morePosts} />
+          </section>
+        )}
       </Page>
     </>
   );
 }
 
-export const getStaticProps = async ({ params }) => {
-  const pages = await getCondensedDatabase({
-    id: process.env.NOTION_BLOG_ID,
-    condensed: true,
-  });
+const TableOfContents = ({ content }) => {
+  useScrollToHashOnLoad();
 
-  const match = pages.find(({ slug }) => slug === params.slug);
-  const recordMap = await notionX.getPage(match.id);
+  return (
+    <nav className="table-of-contents">
+      <header>Tabla de Contenido</header>
+      <ul>
+        {content.map(({ type, label, slug, indent }, i) => (
+          <li key={slug} className={type}>
+            <Link href={{ hash: slug }} replace>
+              <a>{label}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+
+export async function getStaticProps({ params, preview = null }) {
+  const { post, morePosts } = await getPostAndMorePosts(params.slug, preview);
 
   return {
     props: {
-      post: match,
-      recordMap,
+      preview,
+      post,
+      morePosts,
     },
-    revalidate: threeHours,
   };
-};
+}
 
 export async function getStaticPaths() {
-  if (isDev) {
-    return {
-      paths: [],
-      fallback: true,
-    };
-  }
-
-  try {
-    const posts = await getCondensedDatabase({
-      id: process.env.NOTION_BLOG_ID,
-    });
-
-    const publishedPosts = posts.filter(({ published }) => published);
-    const paths = publishedPosts.map(({ slug }) => `/blog/${slug}`);
-    return {
-      paths,
-      fallback: true,
-    };
-  } catch (e) {
-    console.error(e);
-  }
-
+  const allPosts = await getAllPostsWithSlug();
   return {
-    paths: [],
+    paths: allPosts.map((post) => `/blog/${post.slug}`) || [],
     fallback: true,
   };
 }
