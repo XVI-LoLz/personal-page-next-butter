@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import Link from "next/link";
 import Head from "next/head";
 import ErrorPage from "next/error";
 import { useRouter } from "next/router";
 import kebabCase from "lodash.kebabcase";
 
+import useScrollToHashOnLoad from "hooks/use-hash-on-load";
 import { getAllPostsWithSlug, getPostAndMorePosts } from "lib/buttercms";
 
 import Page from "components/Page";
 import PostHeader from "components/PostHeader";
 import PostBody from "components/PostBody";
 import MorePosts from "components/MorePosts";
-
-import style from "styles/modifiers/blog.module.scss";
-import Link from "next/link";
-import useScrollToHashOnLoad from "hooks/use-hash-on-load";
 import PostBreadcrumbs from "components/PostBreadcrumbs";
 
-export default function NotionPage({ post, morePosts, preview }) {
+import style from "styles/modifiers/blog.module.scss";
+
+export default function BlogPost({ post, morePosts }) {
   const [improved, setImproved] = useState(post);
   const [toc, setTOC] = useState([]);
   const router = useRouter();
@@ -34,13 +35,12 @@ export default function NotionPage({ post, morePosts, preview }) {
           type: h.nodeName,
           label: h.innerHTML,
           slug: h.id,
-          indent: h.nodeName.replace("H", ""),
         });
       });
       setTOC(nodes);
       setImproved(doc.body.innerHTML);
     }
-  }, [post.body]);
+  }, [post?.body]);
 
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -49,8 +49,8 @@ export default function NotionPage({ post, morePosts, preview }) {
   return (
     <>
       <Head>
-        <title>{post.title} | Blog</title>
-        <meta property="og:image" content={post.featured_image} />
+        <title>{post?.title} | Blog</title>
+        <meta property="og:image" content={post?.featured_image} />
       </Head>
 
       <Page className={style} sidebar={<TableOfContents content={toc} />}>
@@ -59,7 +59,7 @@ export default function NotionPage({ post, morePosts, preview }) {
           <PostHeader {...post} />
           <PostBody content={improved} />
         </article>
-        {morePosts.length > 0 && (
+        {morePosts?.length > 0 && (
           <section className="more-posts">
             <h1>Más artículos</h1>
             <MorePosts posts={morePosts} />
@@ -77,7 +77,7 @@ const TableOfContents = ({ content }) => {
     <nav className="table-of-contents">
       <header>Tabla de Contenido</header>
       <ul>
-        {content.map(({ type, label, slug, indent }, i) => (
+        {content?.map(({ type, label, slug }) => (
           <li key={slug} className={type}>
             <Link href={{ hash: slug }} replace>
               <a>{label}</a>
@@ -87,6 +87,31 @@ const TableOfContents = ({ content }) => {
       </ul>
     </nav>
   );
+};
+
+TableOfContents.propTypes = {
+  content: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+TableOfContents.defaultProps = {
+  content: [],
+};
+
+BlogPost.propTypes = {
+  post: PropTypes.shape({
+    body: PropTypes.string,
+    slug: PropTypes.string,
+    title: PropTypes.string,
+    featured_image: PropTypes.string,
+  }),
+  morePosts: PropTypes.arrayOf(PropTypes.shape({})),
+  preview: PropTypes.shape({}),
+};
+
+BlogPost.defaultProps = {
+  post: {},
+  morePosts: [],
+  preview: {},
 };
 
 export async function getStaticProps({ params, preview = null }) {
@@ -104,7 +129,7 @@ export async function getStaticProps({ params, preview = null }) {
 export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug();
   return {
-    paths: allPosts.map((post) => `/blog/${post.slug}`) || [],
+    paths: allPosts?.map((post) => `/blog/${post?.slug}`) || [],
     fallback: true,
   };
 }

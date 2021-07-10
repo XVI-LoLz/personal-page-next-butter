@@ -38,28 +38,28 @@ export default function Resource({
         </h3>
 
         <Category className="topics" label="Temas:" icon={RocketIcon}>
-          {topics.map((el, i) => (
+          {topics?.map((el, i) => (
             <p key={i} className={style.value}>
               {el}
             </p>
           ))}
         </Category>
         <Category className="languages" label="Idiomas:" icon={LanguageIcon}>
-          {languages.map((el, i) => (
+          {languages?.map((el, i) => (
             <p key={i} className={style.value}>
               {el}
             </p>
           ))}
         </Category>
         <Category className="activities" label="Estrategia" icon={ShakeIcon}>
-          {activities.map((el, i) => (
+          {activities?.map((el, i) => (
             <p key={i} className={style.value}>
               {el}
             </p>
           ))}
         </Category>
         <Category className="modalities" label="Modalidades" icon={MoneyIcon}>
-          {modalities.map((el, i) => (
+          {modalities?.map((el, i) => (
             <p key={i} className={style.value}>
               {el}
             </p>
