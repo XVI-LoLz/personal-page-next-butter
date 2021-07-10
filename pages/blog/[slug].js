@@ -130,6 +130,6 @@ export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug();
   return {
     paths: allPosts?.map((post) => `/blog/${post?.slug}`) || [],
-    fallback: true,
+    fallback: "blocking",
   };
 }
