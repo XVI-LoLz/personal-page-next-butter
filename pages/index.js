@@ -7,6 +7,7 @@ import MorePosts from "components/MorePosts";
 import Header from "styled-components/Header";
 
 import style from "styles/modifiers/home.module.scss";
+import { fiveMinutes } from "utils/revalidation";
 
 // TODO Add banner carousel functionality
 // TODO Add top tags functionality
@@ -41,5 +42,6 @@ export async function getStaticProps({ preview = null }) {
   const projects = (await getProjectsForHome()) || [];
   return {
     props: { allPosts, preview, projects },
+    revalidate: fiveMinutes,
   };
 }

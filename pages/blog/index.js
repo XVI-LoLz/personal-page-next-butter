@@ -7,6 +7,7 @@ import PostCard from "components/PostCard";
 import { Header } from "styled-components";
 
 import style from "styles/modifiers/blog.module.scss";
+import { fiveMinutes } from "utils/revalidation";
 
 export default function BlogPage({ posts, categories }) {
   return (
@@ -42,5 +43,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { posts, categories },
+    revalidate: fiveMinutes,
   };
 };
