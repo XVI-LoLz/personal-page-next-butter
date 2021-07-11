@@ -12,18 +12,21 @@ import { fiveMinutes } from "utils/revalidation";
 export default function BlogPage({ posts, categories }) {
   return (
     <Page className={style}>
-      {categories?.map(({ name, slug }) => (
-        <section key={slug}>
-          <Header>{name}</Header>
-          <div className="posts-container">
-            {posts
-              .filter((post) => post.categories.find((c) => c.slug === slug))
-              ?.map((post) => (
+      {categories?.map(({ name, slug }) => {
+        const occurrences = posts.filter((post) =>
+          post.categories.find((c) => c.slug === slug)
+        );
+        return (
+          <section key={slug}>
+            {occurrences.length > 0 && <Header>{name}</Header>}
+            <div className="posts-container">
+              {occurrences?.map((post) => (
                 <PostCard key={post.created} {...post} />
               ))}
-          </div>
-        </section>
-      ))}
+            </div>
+          </section>
+        );
+      })}
     </Page>
   );
 }
