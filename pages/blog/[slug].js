@@ -8,6 +8,7 @@ import kebabCase from "lodash.kebabcase";
 
 import useScrollToHashOnLoad from "hooks/use-hash-on-load";
 import { getAllPostsWithSlug, getPostAndMorePosts } from "lib/buttercms";
+import { fiveMinutes } from "utils/revalidation";
 
 import Page from "components/Page";
 import PostHeader from "components/PostHeader";
