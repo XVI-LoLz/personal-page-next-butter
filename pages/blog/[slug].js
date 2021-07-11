@@ -123,6 +123,7 @@ export async function getStaticProps({ params, preview = null }) {
       post,
       morePosts,
     },
+    revalidate: fiveMinutes,
   };
 }
 
