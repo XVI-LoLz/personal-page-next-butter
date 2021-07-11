@@ -3,11 +3,18 @@ import cn from "classnames";
 
 import LinkIcon from "public/icons/link.svg";
 import RocketIcon from "public/icons/rocket.svg";
-import LanguageIcon from "public/icons/language.svg";
-import ShakeIcon from "public/icons/shake.svg";
-import MoneyIcon from "public/icons/money.svg";
 
 import style from "./style.module.scss";
+
+const getTopicLabel = (topic) => {
+  const topics = {
+    "web-dev": "Web Dev",
+    "game-dev": "Game Dev",
+    programming: "Programación",
+  };
+
+  return topics[topic] || "";
+};
 
 const Category = ({ className, label, icon: Icon, children }) => (
   <div className={cn(style.Category, className)}>
@@ -19,32 +26,22 @@ const Category = ({ className, label, icon: Icon, children }) => (
   </div>
 );
 
-export default function Resource({
-  title,
-  link,
-  topics,
-  languages,
-  modalities,
-  activities,
-}) {
+export default function Resource({ title, link, topic }) {
   return (
     <div className="resource-wrapper">
       <article className={style.Resource}>
         <h3 className={style.resourceTitle}>
           <a href={link} target="_blank" rel="noreferer noreferrer">
             <span className={style.titleText}>{title}</span>
-            <LinkIcon className="category-icon" />
           </a>
         </h3>
 
-        <Category className="topics" label="Temas:" icon={RocketIcon}>
-          {topics?.map((el, i) => (
-            <p key={i} className={style.value}>
-              {el}
-            </p>
-          ))}
-        </Category>
-        <Category className="languages" label="Idiomas:" icon={LanguageIcon}>
+        {topic && (
+          <Category className="topics" label="Temas:" icon={RocketIcon}>
+            <p className={style.value}>{getTopicLabel(topic)}</p>
+          </Category>
+        )}
+        {/* <Category className="languages" label="Idiomas:" icon={LanguageIcon}>
           {languages?.map((el, i) => (
             <p key={i} className={style.value}>
               {el}
@@ -64,7 +61,7 @@ export default function Resource({
               {el}
             </p>
           ))}
-        </Category>
+        </Category> */}
       </article>
       <a className={style.cta} href={link} target="_blank" rel="noreferrer">
         <h4>Visitar</h4>
@@ -76,15 +73,14 @@ export default function Resource({
 Resource.propTypes = {
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  topics: PropTypes.arrayOf(PropTypes.string),
-  languages: PropTypes.arrayOf(PropTypes.string),
-  modalities: PropTypes.arrayOf(PropTypes.string),
-  activities: PropTypes.arrayOf(PropTypes.string),
+  topic: PropTypes.string.isRequired,
+  // languages: PropTypes.arrayOf(PropTypes.string),
+  // modalities: PropTypes.arrayOf(PropTypes.string),
+  // activities: PropTypes.arrayOf(PropTypes.string),
 };
 
 Resource.defaultProps = {
-  topics: [],
-  languages: [],
-  modalities: [],
-  activities: [],
+  // languages: [],
+  // modalities: [],
+  // activities: [],
 };

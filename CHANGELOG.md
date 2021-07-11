@@ -7,6 +7,22 @@ Fixed
 Security
 ---
 
+## [0.8.0] - 2021-07-11
+
+### Added
+
+- Recursos page
+- Post header featured image render logic
+
+### Changed
+
+- Table of contents margin
+- Resource component to fit cms data structure
+
+### Fixed
+
+- Blog categories header on zero articles
+
 ## [0.7.0] - 2021-07-10
 
 ### Added
