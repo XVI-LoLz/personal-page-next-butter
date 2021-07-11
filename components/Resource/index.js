@@ -33,13 +33,14 @@ export default function Resource({ title, link, topic }) {
         <h3 className={style.resourceTitle}>
           <a href={link} target="_blank" rel="noreferer noreferrer">
             <span className={style.titleText}>{title}</span>
-            <LinkIcon className="category-icon" />
           </a>
         </h3>
 
-        <Category className="topics" label="Temas:" icon={RocketIcon}>
-          <p className={style.value}>{getTopicLabel(topic)}</p>
-        </Category>
+        {topic && (
+          <Category className="topics" label="Temas:" icon={RocketIcon}>
+            <p className={style.value}>{getTopicLabel(topic)}</p>
+          </Category>
+        )}
         {/* <Category className="languages" label="Idiomas:" icon={LanguageIcon}>
           {languages?.map((el, i) => (
             <p key={i} className={style.value}>
