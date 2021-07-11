@@ -22,7 +22,7 @@ export default function PostHeader({
           ))}
         </div>
       </div>
-      <img src={ftImage} alt={ftImageAlt} layout="fill" />
+      {ftImage ? <img src={ftImage} alt={ftImageAlt} layout="fill" /> : null}
     </div>
   );
 }
