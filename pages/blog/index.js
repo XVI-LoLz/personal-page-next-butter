@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import useTranslation from "next-translate/useTranslation";
 
 import { getAllBlogCategories, getAllPostsWithSlug } from "lib/buttercms";
 
@@ -6,10 +7,14 @@ import Page from "components/Page";
 import PostCard from "components/PostCard";
 import { Header } from "styled-components";
 
-import style from "styles/modifiers/blog.module.scss";
 import { fiveMinutes } from "utils/revalidation";
+import { getFilteredCategories } from "utils/locales";
+
+import style from "styles/modifiers/blog.module.scss";
 
 export default function BlogPage({ posts, categories }) {
+  const { t } = useTranslation("common");
+
   return (
     <Page className={style}>
       {categories?.map(({ name, slug }) => {
@@ -18,7 +23,14 @@ export default function BlogPage({ posts, categories }) {
         );
         return (
           <section key={slug}>
-            {occurrences.length > 0 && <Header>{name}</Header>}
+            {occurrences.length > 0 ? (
+              <>
+                <Header>{name}</Header>
+                <div className="post-subheader">
+                  {t("articlesSubheader", { count: occurrences.length })}
+                </div>
+              </>
+            ) : null}
             <div className="posts-container">
               {occurrences?.map((post) => (
                 <PostCard key={post.created} {...post} />
@@ -30,6 +42,7 @@ export default function BlogPage({ posts, categories }) {
     </Page>
   );
 }
+
 BlogPage.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({})),
   categories: PropTypes.arrayOf(PropTypes.shape({})),
@@ -40,12 +53,21 @@ BlogPage.defaultProps = {
   categories: [],
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps = async ({ locale }) => {
+  const sortByLocale = (a, b) => {
+    if (a.categories.some((el) => el.slug === locale)) return -1;
+    if (b.categories.some((el) => el.slug === locale)) return 1;
+    return 0;
+  };
+
   const posts = (await getAllPostsWithSlug()) || [];
   const categories = (await getAllBlogCategories()) || [];
 
+  const sortedPosts = posts.sort(sortByLocale);
+  const filteredCategories = getFilteredCategories(categories);
+
   return {
-    props: { posts, categories },
+    props: { posts: sortedPosts, categories: filteredCategories },
     revalidate: fiveMinutes,
   };
 };

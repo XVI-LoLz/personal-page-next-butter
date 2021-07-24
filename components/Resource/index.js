@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import cn from "classnames";
+import useTranslation from "next-translate/useTranslation";
 
-import LinkIcon from "public/icons/link.svg";
 import RocketIcon from "public/icons/rocket.svg";
 
 import style from "./style.module.scss";
@@ -27,6 +27,8 @@ const Category = ({ className, label, icon: Icon, children }) => (
 );
 
 export default function Resource({ title, link, topic }) {
+  const { t } = useTranslation("resources");
+
   return (
     <div className="resource-wrapper">
       <article className={style.Resource}>
@@ -64,7 +66,7 @@ export default function Resource({ title, link, topic }) {
         </Category> */}
       </article>
       <a className={style.cta} href={link} target="_blank" rel="noreferrer">
-        <h4>Visitar</h4>
+        <h4>{t`resource.cta`}</h4>
       </a>
     </div>
   );

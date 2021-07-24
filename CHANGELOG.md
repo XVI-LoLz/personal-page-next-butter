@@ -7,6 +7,25 @@ Fixed
 Security
 ---
 
+## [0.9.0] - 2021-07-24
+
+### Added
+
+- Localization logic
+- PostDate component to show a tooltip about updated time
+- Language tag to PostCard
+- Date and Locales util functions
+
+### Changed
+
+- MainNavbar route render logic
+- Components text to fit localization
+- Date component
+
+### Removed
+
+- Unused components
+
 ## [0.8.0] - 2021-07-11
 
 ### Added
