@@ -1,13 +1,21 @@
+import Trans from "next-translate/Trans";
+import useTranslation from "next-translate/useTranslation";
+
 import style from "./style.module.scss";
 
 export default function Banner() {
+  const { t } = useTranslation("home");
+
   return (
     <div className={style.Banner}>
       <div className={style.descriptionContainer}>
         <img className={style.clippedLogo} src="images/me.jpg" alt="logo" />
         <div className={style.description}>
           <header className={style.header}>
-            Hola, soy <span className={style.name}>LoLz</span>
+            <Trans
+              i18nKey="home:greeting"
+              components={[<span className={style.name} />]}
+            />
           </header>
           <p className={style.introduction}>Web/Game Dev & Streamer.</p>
           <a
@@ -16,7 +24,7 @@ export default function Banner() {
             target="_blank"
             rel="noreferrer"
           >
-            Acompáñame en Twitch
+            {t`twitch`}
           </a>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
+import { getFilteredCategories } from "utils/locales";
 
 const blogBreadcrumbs = [
   { label: "Home", href: "/" },
@@ -10,7 +11,7 @@ const blogBreadcrumbs = [
 
 export default function PostBreadcrumbs({ post }) {
   const { categories = [] } = post || {};
-  const [mainCategory] = categories;
+  const [mainCategory] = getFilteredCategories(categories);
   const breadcrumbs = mainCategory
     ? [
         ...blogBreadcrumbs,
