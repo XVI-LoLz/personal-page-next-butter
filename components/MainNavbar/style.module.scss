@@ -45,3 +45,16 @@
     color: var(--color-fg-primary);
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .MainNavbar {
+    justify-content: space-between;
+    align-items: center;
+    .links {
+      margin: 0;
+    }
+    .logo {
+      display: none;
+    }
+  }
+}

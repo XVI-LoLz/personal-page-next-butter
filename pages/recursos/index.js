@@ -1,27 +1,37 @@
 import PropTypes from "prop-types";
+import useTranslation from "next-translate/useTranslation";
+
 import { getAllResources } from "lib/buttercms";
-import { fiveMinutes } from "utils/revalidation";
 
 import Page from "components/Page";
 import Resource from "components/Resource";
 import { Header } from "styled-components";
 
+import { fiveMinutes } from "utils/revalidation";
+
 export default function RecursosPage({ allResources }) {
+  const { t } = useTranslation("resources");
   const platforms = allResources.filter((el) => el.type === "platform");
   const channels = allResources.filter((el) => el.type === "channel");
 
   return (
     <Page>
-      <Header>Plataformas</Header>
+      <Header>{t`platformsHeader`}</Header>
+      <div className="post-subtitle">
+        {t("platformsSubheader", { count: platforms?.length })}
+      </div>
       <div className="posts-container">
-        {platforms?.map((platform) => (
-          <Resource {...platform} />
+        {platforms?.map((platform, i) => (
+          <Resource key={i} {...platform} />
         ))}
       </div>
-      <Header>Canales</Header>
+      <Header>{t`channelsHeader`}</Header>
+      <div className="post-subtitle">
+        {t("channelsSubheader", { count: channels?.length })}
+      </div>
       <div className="posts-container">
-        {channels?.map((platform) => (
-          <Resource {...platform} />
+        {channels?.map((channel, i) => (
+          <Resource key={i} {...channel} />
         ))}
       </div>
     </Page>

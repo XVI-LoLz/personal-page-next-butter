@@ -1,3 +1,5 @@
+import useTranslation from "next-translate/useTranslation";
+
 import { getAllPostsForHome, getProjectsForHome } from "lib/buttercms";
 
 import Page from "components/Page";
@@ -13,6 +15,8 @@ import { fiveMinutes } from "utils/revalidation";
 // TODO Add top tags functionality
 
 export default function Home({ allPosts, projects }) {
+  const { t } = useTranslation("home");
+
   return (
     <Page
       className={style}
@@ -20,25 +24,29 @@ export default function Home({ allPosts, projects }) {
       sidebar={<Sidebar projects={projects} />}
       hideWhitespace
     >
-      <Header>Del blog</Header>
+      <Header>{t`blogHeader`}</Header>
       <MorePosts posts={allPosts} />
     </Page>
   );
 }
 
-const Sidebar = ({ projects = [] }) => (
-  <section>
-    <Header>Otros proyectos</Header>
-    <div className="projects-container">
-      {projects?.map((project) => (
-        <ProjectCard key={project.meta.id} {...project} />
-      ))}
-    </div>
-  </section>
-);
+const Sidebar = ({ projects = [] }) => {
+  const { t } = useTranslation("home");
+  return (
+    <section>
+      <Header>{t`projectsHeader`}</Header>
+      <div className="projects-container">
+        {projects?.map((project) => (
+          <ProjectCard key={project.meta.id} {...project} />
+        ))}
+      </div>
+    </section>
+  );
+};
 
-export async function getStaticProps({ preview = null }) {
-  const allPosts = (await getAllPostsForHome(preview)) || [];
+export async function getStaticProps({ preview = null, locale = "es-MX" }) {
+  const slugLocale = locale.toLowerCase();
+  const allPosts = (await getAllPostsForHome(preview, slugLocale)) || [];
   const projects = (await getProjectsForHome()) || [];
   return {
     props: { allPosts, preview, projects },

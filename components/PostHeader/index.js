@@ -1,11 +1,12 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
 
-import Date from "components/Date";
+import PostDate from "components/PostDate";
 import PostTitle from "components/PostTitle";
 
 export default function PostHeader({
   title,
+  published,
   updated,
   tags,
   featured_image: ftImage,
@@ -15,7 +16,7 @@ export default function PostHeader({
     <div>
       <PostTitle>{title}</PostTitle>
       <div className="post-subtitle">
-        {updated && <Date dateString={updated} />}
+        <PostDate published={published} updated={updated} />
         <div className="tags-container">
           {tags?.map(({ name }) => (
             <span key={name}>{name}</span>

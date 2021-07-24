@@ -5,6 +5,7 @@ import Head from "next/head";
 import ErrorPage from "next/error";
 import { useRouter } from "next/router";
 import kebabCase from "lodash.kebabcase";
+import useTranslation from "next-translate/useTranslation";
 
 import useScrollToHashOnLoad from "hooks/use-hash-on-load";
 import { getAllPostsWithSlug, getPostAndMorePosts } from "lib/buttercms";
@@ -19,6 +20,7 @@ import PostBreadcrumbs from "components/PostBreadcrumbs";
 import style from "styles/modifiers/blog.module.scss";
 
 export default function BlogPost({ post, morePosts }) {
+  const { t } = useTranslation("common");
   const [improved, setImproved] = useState(post);
   const [toc, setTOC] = useState([]);
   const router = useRouter();
@@ -62,7 +64,7 @@ export default function BlogPost({ post, morePosts }) {
         </article>
         {morePosts?.length > 0 && (
           <section className="more-posts">
-            <h1>Más artículos</h1>
+            <h1>{t`moreArticles`}</h1>
             <MorePosts posts={morePosts} />
           </section>
         )}
@@ -72,11 +74,12 @@ export default function BlogPost({ post, morePosts }) {
 }
 
 const TableOfContents = ({ content }) => {
+  const { t } = useTranslation("common");
   useScrollToHashOnLoad();
 
   return (
     <nav className="table-of-contents">
-      <header>Tabla de Contenido</header>
+      <header>{t`toc`}</header>
       <ul>
         {content?.map(({ type, label, slug }) => (
           <li key={slug} className={type}>

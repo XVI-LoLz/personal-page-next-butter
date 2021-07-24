@@ -8,9 +8,18 @@
   border-radius: var(--spacing-1);
 
   .cardHeader {
+    display: flex;
     font-size: var(--em-size-ml);
     font-weight: var(--weight-bold);
     margin-bottom: var(--spacing-1);
+    > span {
+      flex: 1 1 100%;
+      flex-wrap: nowrap;
+      word-wrap: break-word;
+    }
+    > span + span {
+      flex: 1 1 auto;
+    }
   }
 
   .cardDescription {
