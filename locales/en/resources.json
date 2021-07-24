@@ -1,0 +1,17 @@
+{
+  "platformsHeader": "Platforms",
+  "platformsSubheader": {
+    "0": "No platforms",
+    "one": "{{count}} Platform",
+    "other": "{{count}} Platforms"
+  },
+  "channelsHeader": "Channels",
+  "channelsSubheader": {
+    "0": "No channels",
+    "one": "{{count}} Channel",
+    "other": "{{count}} Channels"
+  },
+  "resource": {
+    "cta": "Visit"
+  }
+}

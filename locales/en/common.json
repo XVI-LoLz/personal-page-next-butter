@@ -1,0 +1,20 @@
+{
+  "navbar": {
+    "home": "Home",
+    "blog": "Blog",
+    "resources": "Resources"
+  },
+  "postCard": {
+    "cta": "Read more"
+  },
+  "articlesSubheader": {
+    "0": "No articles",
+    "one": "{{count}} Article",
+    "other": "{{count}} Articles"
+  },
+  "date": {
+    "tooltip": "Updated: {{date}}"
+  },
+  "toc": "Table of content",
+  "moreArticles": "More articles"
+}
