@@ -11,19 +11,12 @@ import Header from "styled-components/Header";
 import style from "styles/modifiers/home.module.scss";
 import { fiveMinutes } from "utils/revalidation";
 
-// TODO Add banner carousel functionality
-// TODO Add top tags functionality
-
 export default function Home({ allPosts, projects }) {
   const { t } = useTranslation("home");
 
   return (
-    <Page
-      className={style}
-      banner={<Banner />}
-      sidebar={<Sidebar projects={projects} />}
-      hideWhitespace
-    >
+    <Page className={style} sidebar={<Sidebar projects={projects} />}>
+      <Banner />
       <Header>{t`blogHeader`}</Header>
       <MorePosts posts={allPosts} />
     </Page>
@@ -44,7 +37,7 @@ const Sidebar = ({ projects = [] }) => {
   );
 };
 
-export async function getStaticProps({ preview = null, locale = "es-MX" }) {
+export async function getStaticProps({ preview = null, locale = "es" }) {
   const slugLocale = locale.toLowerCase();
   const allPosts = (await getAllPostsForHome(preview, slugLocale)) || [];
   const projects = (await getProjectsForHome()) || [];
