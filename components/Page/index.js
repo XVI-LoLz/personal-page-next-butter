@@ -1,31 +1,18 @@
 import Head from "next/head";
 import PropTypes from "prop-types";
-import cn from "classnames";
 
 import Layout from "components/Layout";
 
 import style from "./style.module.scss";
 
-export default function Page({ className, title, children, sidebar }) {
+export default function Page({ title, children, sidebar }) {
   return (
     <Layout>
       <Head>
         <title>{title || "XVI"}</title>
       </Head>
-      <main
-        className={cn(style.Page, style.singleColumn, {
-          [className?.Modifier]: className && className?.Modifier,
-        })}
-      >
-        {children}
-      </main>
-      {sidebar ? (
-        <aside className={cn(style.sidebar, className?.sidebar)}>
-          {sidebar}
-        </aside>
-      ) : (
-        sidebar
-      )}
+      <main className={style.Page}>{children}</main>
+      {sidebar ? <aside className={style.Sidebar}>{sidebar}</aside> : sidebar}
     </Layout>
   );
 }

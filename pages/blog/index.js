@@ -10,13 +10,33 @@ import { Header } from "styled-components";
 import { fiveMinutes } from "utils/revalidation";
 import { getFilteredCategories } from "utils/locales";
 
-import style from "styles/modifiers/blog.module.scss";
+import style from "components/Page/blog.module.scss";
 
 export default function BlogPage({ posts, categories }) {
+  return (
+    <Page>
+      <div className={style.content}>
+        <Posts posts={posts} categories={categories} />
+      </div>
+    </Page>
+  );
+}
+
+BlogPage.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape({})),
+  categories: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+BlogPage.defaultProps = {
+  posts: [],
+  categories: [],
+};
+
+const Posts = ({ posts, categories }) => {
   const { t } = useTranslation("common");
 
   return (
-    <Page className={style}>
+    <div className={style.posts}>
       {categories?.map(({ name, slug }) => {
         const occurrences = posts.filter((post) =>
           post.categories.find((c) => c.slug === slug)
@@ -39,16 +59,16 @@ export default function BlogPage({ posts, categories }) {
           </section>
         );
       })}
-    </Page>
+    </div>
   );
-}
+};
 
-BlogPage.propTypes = {
+Posts.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({})),
   categories: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
-BlogPage.defaultProps = {
+Posts.defaultProps = {
   posts: [],
   categories: [],
 };

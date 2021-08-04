@@ -8,17 +8,24 @@ import ProjectCard from "components/ProjectCard";
 import MorePosts from "components/MorePosts";
 import Header from "styled-components/Header";
 
-import style from "styles/modifiers/home.module.scss";
+import style from "components/Page/home.module.scss";
+
 import { fiveMinutes } from "utils/revalidation";
 
 export default function Home({ allPosts, projects }) {
   const { t } = useTranslation("home");
 
   return (
-    <Page className={style} sidebar={<Sidebar projects={projects} />}>
+    <Page>
       <Banner />
-      <Header>{t`blogHeader`}</Header>
-      <MorePosts posts={allPosts} />
+      <div className={style.content}>
+        <div className={style.cardsContainer}>
+          <Header>{t`blogHeader`}</Header>
+          <MorePosts posts={allPosts} />
+        </div>
+
+        <Sidebar projects={projects} />
+      </div>
     </Page>
   );
 }
@@ -26,7 +33,7 @@ export default function Home({ allPosts, projects }) {
 const Sidebar = ({ projects = [] }) => {
   const { t } = useTranslation("home");
   return (
-    <section>
+    <section className={style.Sidebar}>
       <Header>{t`projectsHeader`}</Header>
       <div className="projects-container">
         {projects?.map((project) => (

@@ -17,7 +17,7 @@ import PostBody from "components/PostBody";
 import MorePosts from "components/MorePosts";
 import PostBreadcrumbs from "components/PostBreadcrumbs";
 
-import style from "styles/modifiers/blog.module.scss";
+import style from "components/Page/blog.module.scss";
 
 export default function BlogPost({ post, morePosts }) {
   const { t } = useTranslation("common");
