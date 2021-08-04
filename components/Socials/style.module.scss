@@ -1,6 +1,33 @@
+@import "styles/mixins";
+
+@mixin showAsHamburger {
+  .hamburger {
+    display: initial;
+  }
+  .icons {
+    display: none;
+  }
+}
+
+@mixin showAsIcons {
+  .hamburger {
+    display: none;
+  }
+  .icons {
+    display: flex;
+    gap: var(--spacing-2);
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .Socials {
+  @include showAsHamburger();
   display: flex;
-  > :not(:last-child) {
-    margin-right: var(--spacing-2);
+  justify-content: center;
+  align-items: center;
+
+  @include desktop {
+    @include showAsIcons();
   }
 }

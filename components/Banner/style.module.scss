@@ -1,3 +1,5 @@
+@import "styles/mixins";
+
 .Banner {
   position: relative;
   grid-column: 1 / 4;
@@ -12,7 +14,25 @@
     height: 100%;
   }
 
+  .clippedLogo {
+    display: initial;
+    width: 248px;
+    height: 248px;
+    margin-right: var(--spacing-9);
+    mask: var(--l-logo);
+    mask-repeat: no-repeat;
+    object-fit: cover;
+    mask-position: center;
+    mask-size: 248px;
+    filter: saturate(0%) opacity(90%) drop-shadow(0 0 0 #e87d70);
+
+    @include mobile {
+      display: none;
+    }
+  }
+
   .descriptionContainer .description {
+    align-items: center;
     text-transform: uppercase;
     font-weight: var(--weight-bold);
 
@@ -44,18 +64,6 @@
     min-width: 100vw;
     max-height: 400px;
     filter: contrast(110%) blur(4px);
-  }
-
-  .clippedLogo {
-    width: 248px;
-    height: 248px;
-    margin-right: var(--spacing-9);
-    mask: var(--l-logo);
-    mask-repeat: no-repeat;
-    object-fit: cover;
-    mask-position: center;
-    mask-size: 248px;
-    filter: saturate(0%) opacity(90%) drop-shadow(0 0 0 #e87d70);
   }
 
   .name {

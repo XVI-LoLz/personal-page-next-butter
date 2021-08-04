@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import cn from "classnames";
 import useTranslation from "next-translate/useTranslation";
+import { FaBlog, FaBookReader, FaHome } from "react-icons/fa";
 
 import Socials from "components/Socials";
 
@@ -16,14 +17,17 @@ export default function MainNavbar() {
     {
       route: "/",
       label: t`navbar.home`,
+      icon: FaHome,
     },
     {
       route: "/blog",
       label: t`navbar.blog`,
+      icon: FaBlog,
     },
     {
-      route: "/recursos",
+      route: "/resources",
       label: t`navbar.resources`,
+      icon: FaBookReader,
     },
   ];
 
@@ -31,7 +35,7 @@ export default function MainNavbar() {
     <nav className={style.MainNavbar}>
       <Logo className={style.logo} />
       <ul className={style.links}>
-        {routes?.map(({ route, label }, i) => (
+        {routes?.map(({ route, label, icon: Icon }, i) => (
           <li key={i}>
             <Link href={route}>
               <a
@@ -41,8 +45,10 @@ export default function MainNavbar() {
                       ? pathname.length === route.length
                       : pathname.startsWith(route),
                 })}
+                title={label}
               >
-                {label}
+                <span className={style.label}>{label}</span>
+                <Icon className={style.icon} />
               </a>
             </Link>
           </li>

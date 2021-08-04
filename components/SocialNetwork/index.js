@@ -10,7 +10,7 @@ export default function SocialNetwork({ icon: Icon, label, href, showLabel }) {
       target="_blank"
       rel="noreferrer"
     >
-      {Icon ? <Icon size={16} /> : null}
+      {Icon ? <Icon size={18} /> : null}
       {showLabel && label ? <span>{label}</span> : null}
     </a>
   );
