@@ -9,7 +9,7 @@ import { Header } from "styled-components";
 
 import { fiveMinutes } from "utils/revalidation";
 
-export default function RecursosPage({ allResources }) {
+export default function ResourcesPage({ allResources }) {
   const { t } = useTranslation("resources");
   const platforms = allResources.filter((el) => el.type === "platform");
   const channels = allResources.filter((el) => el.type === "channel");
@@ -38,11 +38,11 @@ export default function RecursosPage({ allResources }) {
   );
 }
 
-RecursosPage.propTypes = {
+ResourcesPage.propTypes = {
   allResources: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
-RecursosPage.defaultProps = {
+ResourcesPage.defaultProps = {
   allResources: [],
 };
 
