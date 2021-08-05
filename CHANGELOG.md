@@ -7,6 +7,12 @@ Fixed
 Security
 ---
 
+## [0.9.1] - 2021-08-04
+
+### Fixed
+
+- Media queries and styles
+
 ## [0.9.0] - 2021-07-24
 
 ### Added
