@@ -15,6 +15,10 @@
   }
 }
 
+.projectsContainer {
+  margin-bottom: var(--spacing-4);
+}
+
 .cardsContainer {
   grid-column: cards-start / cards-end;
 }
