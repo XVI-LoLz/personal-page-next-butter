@@ -7,11 +7,13 @@ export default function Footer() {
     <footer className={style.Footer}>
       <div className={style.attribution}>
         <span className={style.attributionLabel}>{t`footer.attribution`}</span>
-        <img
-          className={style.attributionImage}
-          src="https://cdn.buttercms.com/RyJ7UhcVTCRqrCFXwgCo"
-          alt="ButterCMS logo"
-        />
+        <a href="https://buttercms.com" target="_blank" rel="noreferrer">
+          <img
+            className={style.attributionImage}
+            src="https://cdn.buttercms.com/RyJ7UhcVTCRqrCFXwgCo"
+            alt="ButterCMS logo"
+          />
+        </a>
       </div>
     </footer>
   );
