@@ -35,7 +35,7 @@ const Sidebar = ({ projects = [] }) => {
   return (
     <section className={style.Sidebar}>
       <Header>{t`projectsHeader`}</Header>
-      <div className="projects-container">
+      <div className={style.projectsContainer}>
         {projects?.map((project) => (
           <ProjectCard key={project.meta.id} {...project} />
         ))}
