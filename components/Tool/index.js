@@ -33,7 +33,7 @@ export default function Tool({
         <p className={style.type}>{type}</p>
         <p className={style.descriptionLabel}>Descripción</p>
         <p className={style.description}>{description}</p>
-        <Link key={id} href="/herramientas/[slug]" as={`/herramientas/${slug}`}>
+        <Link key={id} href="/tools/[slug]" as={`/tools/${slug}`}>
           <a className={style.goTo} title="Conoce mi opinión">
             <Chevron />
           </a>

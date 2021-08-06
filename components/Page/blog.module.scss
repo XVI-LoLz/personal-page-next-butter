@@ -1,0 +1,17 @@
+@import "styles/mixins";
+
+.content {
+  margin: 0 var(--spacing-4);
+
+  @include desktop {
+    display: grid;
+    grid-template-columns:
+      minmax(var(--spacing-4), 1fr) [cards-start] minmax(min-content, 824px)
+      [cards-end] minmax(var(--spacing-4), 1fr);
+    margin: 0;
+  }
+}
+
+.posts {
+  grid-column: cards-start / cards-end;
+}

@@ -8,24 +8,24 @@ import ProjectCard from "components/ProjectCard";
 import MorePosts from "components/MorePosts";
 import Header from "styled-components/Header";
 
-import style from "styles/modifiers/home.module.scss";
-import { fiveMinutes } from "utils/revalidation";
+import style from "components/Page/home.module.scss";
 
-// TODO Add banner carousel functionality
-// TODO Add top tags functionality
+import { fiveMinutes } from "utils/revalidation";
 
 export default function Home({ allPosts, projects }) {
   const { t } = useTranslation("home");
 
   return (
-    <Page
-      className={style}
-      banner={<Banner />}
-      sidebar={<Sidebar projects={projects} />}
-      hideWhitespace
-    >
-      <Header>{t`blogHeader`}</Header>
-      <MorePosts posts={allPosts} />
+    <Page>
+      <Banner />
+      <div className={style.content}>
+        <div className={style.cardsContainer}>
+          <Header>{t`blogHeader`}</Header>
+          <MorePosts posts={allPosts} />
+        </div>
+
+        <Sidebar projects={projects} />
+      </div>
     </Page>
   );
 }
@@ -33,9 +33,9 @@ export default function Home({ allPosts, projects }) {
 const Sidebar = ({ projects = [] }) => {
   const { t } = useTranslation("home");
   return (
-    <section>
+    <section className={style.Sidebar}>
       <Header>{t`projectsHeader`}</Header>
-      <div className="projects-container">
+      <div className={style.projectsContainer}>
         {projects?.map((project) => (
           <ProjectCard key={project.meta.id} {...project} />
         ))}
@@ -44,9 +44,8 @@ const Sidebar = ({ projects = [] }) => {
   );
 };
 
-export async function getStaticProps({ preview = null, locale = "es-MX" }) {
-  const slugLocale = locale.toLowerCase();
-  const allPosts = (await getAllPostsForHome(preview, slugLocale)) || [];
+export async function getStaticProps({ preview = null }) {
+  const allPosts = (await getAllPostsForHome(preview)) || [];
   const projects = (await getProjectsForHome()) || [];
   return {
     props: { allPosts, preview, projects },

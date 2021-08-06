@@ -1,3 +1,33 @@
+@mixin mobile {
+  /* Smartphones (portrait and landscape) ----------- */
+  // @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  //   @content;
+  // }
+  @media only screen and (max-device-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  /* iPads (portrait and landscape) ----------- */
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  /* Desktops and laptops ----------- */
+  @media only screen and (min-width: 1025px) {
+    @content;
+  }
+}
+
+@mixin highlightOnHover {
+  &:hover {
+    color: var(--color-hl-blue);
+  }
+}
+
 @mixin underlinedHeader {
   position: relative;
   padding: var(--spacing-1) 0;
@@ -12,11 +42,5 @@
     width: 160px;
     height: 1px;
     background-color: var(--color-fg-primary);
-  }
-}
-
-@mixin separateHorizontally($margin) {
-  > :not(:last-child) {
-    margin-right: $margin;
   }
 }

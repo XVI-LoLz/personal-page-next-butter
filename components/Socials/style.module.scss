@@ -1,6 +1,27 @@
+@import "styles/mixins";
+
 .Socials {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  .icons {
+    display: flex;
+    gap: var(--spacing-2);
+    justify-content: center;
+    align-items: center;
+  }
+  @include desktop {
+    display: flex;
+  }
+}
+
+.Socials.hamburger {
   display: flex;
-  > :not(:last-child) {
-    margin-right: var(--spacing-2);
+  .icons {
+    flex-direction: column;
+    gap: var(--spacing-8);
+  }
+  @include desktop {
+    display: none;
   }
 }

@@ -1,49 +1,29 @@
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import Link from "next/link";
+
 import Head from "next/head";
 import ErrorPage from "next/error";
 import { useRouter } from "next/router";
-import kebabCase from "lodash.kebabcase";
 import useTranslation from "next-translate/useTranslation";
 
-import useScrollToHashOnLoad from "hooks/use-hash-on-load";
 import { getAllPostsWithSlug, getPostAndMorePosts } from "lib/buttercms";
+
+import usePostMetadata from "hooks/use-post-metadata";
 import { fiveMinutes } from "utils/revalidation";
 
 import Page from "components/Page";
+import TableOfContents from "components/TableOfContents";
 import PostHeader from "components/PostHeader";
 import PostBody from "components/PostBody";
 import MorePosts from "components/MorePosts";
 import PostBreadcrumbs from "components/PostBreadcrumbs";
+import Whitespace from "components/Whitespace";
 
-import style from "styles/modifiers/blog.module.scss";
+import style from "components/Page/blog[slug].module.scss";
 
 export default function BlogPost({ post, morePosts }) {
   const { t } = useTranslation("common");
-  const [improved, setImproved] = useState(post);
-  const [toc, setTOC] = useState([]);
+  const { improved, toc } = usePostMetadata(post);
   const router = useRouter();
-
-  useEffect(() => {
-    if (post?.body) {
-      const nodes = [];
-      const doc = new DOMParser().parseFromString(post?.body, "text/html");
-      const headers = doc.querySelectorAll("h1,h2,h3,h4,h5,h6");
-
-      headers.forEach((h, i) => {
-        // eslint-disable-next-line no-param-reassign
-        h.id = kebabCase(i + h.innerHTML);
-        nodes.push({
-          type: h.nodeName,
-          label: h.innerHTML,
-          slug: h.id,
-        });
-      });
-      setTOC(nodes);
-      setImproved(doc.body.innerHTML);
-    }
-  }, [post?.body]);
 
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -56,50 +36,26 @@ export default function BlogPost({ post, morePosts }) {
         <meta property="og:image" content={post?.featured_image} />
       </Head>
 
-      <Page className={style} sidebar={<TableOfContents content={toc} />}>
-        <article>
-          <PostBreadcrumbs post={post} />
-          <PostHeader {...post} />
-          <PostBody content={improved} />
-        </article>
-        {morePosts?.length > 0 && (
-          <section className="more-posts">
-            <h1>{t`moreArticles`}</h1>
-            <MorePosts posts={morePosts} />
-          </section>
-        )}
+      <Page>
+        <div className={style.content}>
+          <TableOfContents content={toc} />
+          <article className={style.article}>
+            <PostBreadcrumbs post={post} />
+            <PostHeader {...post} />
+            <PostBody content={improved} />
+          </article>
+          {morePosts?.length > 0 && (
+            <section className="more-posts">
+              <h1>{t`moreArticles`}</h1>
+              <MorePosts posts={morePosts} />
+            </section>
+          )}
+        </div>
+        <Whitespace />
       </Page>
     </>
   );
 }
-
-const TableOfContents = ({ content }) => {
-  const { t } = useTranslation("common");
-  useScrollToHashOnLoad();
-
-  return (
-    <nav className="table-of-contents">
-      <header>{t`toc`}</header>
-      <ul>
-        {content?.map(({ type, label, slug }) => (
-          <li key={slug} className={type}>
-            <Link href={{ hash: slug }} replace>
-              <a>{label}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-};
-
-TableOfContents.propTypes = {
-  content: PropTypes.arrayOf(PropTypes.shape({})),
-};
-
-TableOfContents.defaultProps = {
-  content: [],
-};
 
 BlogPost.propTypes = {
   post: PropTypes.shape({

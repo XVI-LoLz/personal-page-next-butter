@@ -7,6 +7,36 @@ Fixed
 Security
 ---
 
+## [0.10.0] - 2021-08-06
+
+### Added
+
+-	Locale buttons to nav bar
+- Footer and attribution section
+- Style improvements for mobile devices
+
+### Changed
+
+- Split TOC, post metadata creation, and navbar elements into own components
+- Home page full content instead of locale only
+- Banner text
+- Blog slug pages style
+- Social networks order
+
+### Removed
+
+- Resources page
+
+### Fixed
+
+- Banner width issues
+
+## [0.9.1] - 2021-08-04
+
+### Fixed
+
+- Media queries and styles
+
 ## [0.9.0] - 2021-07-24
 
 ### Added
