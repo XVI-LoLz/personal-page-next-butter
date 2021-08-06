@@ -1,33 +1,27 @@
 @import "styles/mixins";
 
-@mixin showAsHamburger {
-  .hamburger {
-    display: initial;
-  }
-  .icons {
-    display: none;
-  }
-}
-
-@mixin showAsIcons {
-  .hamburger {
-    display: none;
-  }
+.Socials {
+  display: none;
+  justify-content: center;
+  align-items: center;
   .icons {
     display: flex;
     gap: var(--spacing-2);
     justify-content: center;
     align-items: center;
   }
+  @include desktop {
+    display: flex;
+  }
 }
 
-.Socials {
-  @include showAsHamburger();
+.Socials.hamburger {
   display: flex;
-  justify-content: center;
-  align-items: center;
-
+  .icons {
+    flex-direction: column;
+    gap: var(--spacing-8);
+  }
   @include desktop {
-    @include showAsIcons();
+    display: none;
   }
 }
