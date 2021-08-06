@@ -1,0 +1,24 @@
+@import "styles/mixins";
+
+.Locales {
+  display: none;
+  gap: var(--spacing-2);
+  @include desktop {
+    display: flex;
+  }
+}
+
+.Locales.hamburger {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-4);
+  margin: var(--spacing-10);
+  font-size: var(--em-size-l);
+  @include desktop {
+    display: none;
+  }
+}
+
+.link.active {
+  color: var(--color-hl-blue);
+}

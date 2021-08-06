@@ -4,6 +4,9 @@
     "blog": "Blog",
     "resources": "Resources"
   },
+  "footer": {
+    "attribution": "Powered by"
+  },
   "postCard": {
     "cta": "Read more"
   },

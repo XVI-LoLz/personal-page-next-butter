@@ -17,15 +17,17 @@ export default function Banner() {
               components={[<span className={style.name} />]}
             />
           </header>
-          <p className={style.introduction}>Web/Game Dev & Streamer.</p>
-          <a
+          <p className={style.introduction}>
+            Web Dev &<br /> Game Dev
+          </p>
+          {/* <a
             className={style.cta}
             href="https://16th.me/twitch"
             target="_blank"
             rel="noreferrer"
           >
             {t`twitch`}
-          </a>
+          </a> */}
         </div>
       </div>
       <img className={style.background} src="images/banner.png" alt="banner" />

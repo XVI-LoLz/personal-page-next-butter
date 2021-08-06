@@ -1,8 +1,5 @@
 @import "styles/mixins";
 
 .Page {
-  @include desktop {
-    @import "styles/mixins";
-    height: calc(100vh - var(--navbar-height));
-  }
+  min-height: calc(100vh - var(--navbar-height));
 }
