@@ -44,9 +44,8 @@ const Sidebar = ({ projects = [] }) => {
   );
 };
 
-export async function getStaticProps({ preview = null, locale = "es" }) {
-  const slugLocale = locale.toLowerCase();
-  const allPosts = (await getAllPostsForHome(preview, slugLocale)) || [];
+export async function getStaticProps({ preview = null }) {
+  const allPosts = (await getAllPostsForHome(preview)) || [];
   const projects = (await getProjectsForHome()) || [];
   return {
     props: { allPosts, preview, projects },
