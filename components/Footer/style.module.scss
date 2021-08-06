@@ -1,0 +1,29 @@
+@import "styles/mixins";
+
+.Footer {
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--color-bg-secondary);
+  @include mobile {
+    justify-content: center;
+  }
+}
+.attribution {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mobile {
+    flex-direction: column;
+    margin: var(--spacing-2);
+  }
+}
+
+.attributionLabel {
+  font-size: var(--em-size-ml);
+  font-weight: var(--weight-bold);
+}
+
+.attributionImage {
+  max-width: 240px;
+  max-height: auto;
+}
