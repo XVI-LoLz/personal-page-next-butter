@@ -58,6 +58,7 @@
     "react/no-array-index-key": "warn",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "jsx-a11y/no-noninteractive-element-interactions": "warn",
     "jsx-a11y/anchor-is-valid": [
       "error",
       {
