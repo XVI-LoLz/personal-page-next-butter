@@ -36,4 +36,9 @@
     font-size: var(--em-size-xs);
     margin: var(--spacing-q) 0;
   }
+
+  code {
+    color: var(--color-hl-orange);
+    border-radius: var(--spacing-q);
+  }
 }

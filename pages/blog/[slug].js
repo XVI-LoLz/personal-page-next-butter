@@ -43,13 +43,13 @@ export default function BlogPost({ post, morePosts }) {
             <PostBreadcrumbs post={post} />
             <PostHeader {...post} />
             <PostBody content={improved} />
+            {morePosts?.length > 0 && (
+              <section className="more-posts">
+                <h1>{t`moreArticles`}</h1>
+                <MorePosts posts={morePosts} />
+              </section>
+            )}
           </article>
-          {morePosts?.length > 0 && (
-            <section className="more-posts">
-              <h1>{t`moreArticles`}</h1>
-              <MorePosts posts={morePosts} />
-            </section>
-          )}
         </div>
         <Whitespace />
       </Page>
