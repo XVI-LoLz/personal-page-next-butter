@@ -9,7 +9,7 @@ export default function Banner() {
   return (
     <div className={style.Banner}>
       <div className={style.descriptionContainer}>
-        <img className={style.clippedLogo} src="images/me.jpg" alt="logo" />
+        <img className={style.clippedLogo} src="images/me-min.jpg" alt="logo" />
         <div className={style.description}>
           <header className={style.header}>
             <Trans
