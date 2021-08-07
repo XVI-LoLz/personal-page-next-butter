@@ -7,6 +7,21 @@ Fixed
 Security
 ---
 
+## [0.11.0] - 2021-08-07
+
+### Added
+
+- Meta tags components
+- Default meta tags and dynamic meta tags for blog posts
+
+### Changed
+
+- Image assets to optimized versions
+
+### Fixed
+
+- Minor rendering issues
+
 ## [0.10.0] - 2021-08-06
 
 ### Added

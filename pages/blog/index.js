@@ -14,7 +14,7 @@ import style from "components/Page/blog.module.scss";
 
 export default function BlogPage({ posts, categories }) {
   return (
-    <Page>
+    <Page title="Blog">
       <div className={style.content}>
         <Posts posts={posts} categories={categories} />
       </div>

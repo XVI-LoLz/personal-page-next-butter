@@ -11,6 +11,7 @@ import usePostMetadata from "hooks/use-post-metadata";
 import { fiveMinutes } from "utils/revalidation";
 
 import Page from "components/Page";
+import Meta from "components/Meta";
 import TableOfContents from "components/TableOfContents";
 import PostHeader from "components/PostHeader";
 import PostBody from "components/PostBody";
@@ -19,6 +20,17 @@ import PostBreadcrumbs from "components/PostBreadcrumbs";
 import Whitespace from "components/Whitespace";
 
 import style from "components/Page/blog[slug].module.scss";
+
+const getMetadataFromPost = (post) => {
+  const metadata = {
+    title: post?.title,
+    description: post?.meta_description,
+    image: post?.featured_image,
+    url: post?.url,
+    keywords: post?.tags.map((t) => t.name).join(","),
+  };
+  return metadata;
+};
 
 export default function BlogPost({ post, morePosts }) {
   const { t } = useTranslation("common");
@@ -29,31 +41,27 @@ export default function BlogPost({ post, morePosts }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  return (
-    <>
-      <Head>
-        <title>{post?.title} | Blog</title>
-        <meta property="og:image" content={post?.featured_image} />
-      </Head>
+  const metadata = getMetadataFromPost(post);
 
-      <Page>
-        <div className={style.content}>
-          <TableOfContents content={toc} />
-          <article className={style.article}>
-            <PostBreadcrumbs post={post} />
-            <PostHeader {...post} />
-            <PostBody content={improved} />
-            {morePosts?.length > 0 && (
-              <section className="more-posts">
-                <h1>{t`moreArticles`}</h1>
-                <MorePosts posts={morePosts} />
-              </section>
-            )}
-          </article>
-        </div>
-        <Whitespace />
-      </Page>
-    </>
+  return (
+    <Page title="Blog">
+      <Meta {...metadata} />
+      <div className={style.content}>
+        <TableOfContents content={toc} />
+        <article className={style.article}>
+          <PostBreadcrumbs post={post} />
+          <PostHeader {...post} />
+          <PostBody content={improved} />
+          {morePosts?.length > 0 && (
+            <section className="more-posts">
+              <h1>{t`moreArticles`}</h1>
+              <MorePosts posts={morePosts} />
+            </section>
+          )}
+        </article>
+      </div>
+      <Whitespace />
+    </Page>
   );
 }
 
