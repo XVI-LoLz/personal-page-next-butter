@@ -9,7 +9,7 @@ export default function Page({ title, children, sidebar }) {
   return (
     <Layout>
       <Head>
-        <title>{title || "XVI"}</title>
+        <title>{title}</title>
       </Head>
       <main className={style.Page}>{children}</main>
       {sidebar ? <aside className={style.Sidebar}>{sidebar}</aside> : sidebar}
@@ -26,7 +26,7 @@ Page.propTypes = {
 
 Page.defaultProps = {
   className: null,
-  title: "XVI",
+  title: "XVI-LoLz",
   children: null,
   sidebar: null,
 };
