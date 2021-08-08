@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { DiscussionEmbed } from "disqus-react";
 
 export default function DisqusComments({ post }) {
@@ -12,3 +13,15 @@ export default function DisqusComments({ post }) {
     />
   );
 }
+
+DisqusComments.propTypes = {
+  post: PropTypes.shape({
+    url: PropTypes.string,
+    created: PropTypes.string,
+    seo_title: PropTypes.string,
+  }),
+};
+
+DisqusComments.defaultProps = {
+  post: {},
+};
