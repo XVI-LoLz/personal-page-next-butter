@@ -1,6 +1,4 @@
 import PropTypes from "prop-types";
-
-import Head from "next/head";
 import ErrorPage from "next/error";
 import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
@@ -20,6 +18,7 @@ import PostBreadcrumbs from "components/PostBreadcrumbs";
 import Whitespace from "components/Whitespace";
 
 import style from "components/Page/blog[slug].module.scss";
+import DisqusComments from "components/DisqusComments";
 
 const getMetadataFromPost = (post) => {
   const metadata = {
@@ -58,6 +57,7 @@ export default function BlogPost({ post, morePosts }) {
               <MorePosts posts={morePosts} />
             </section>
           )}
+          <DisqusComments post={post} />
         </article>
       </div>
       <Whitespace />
