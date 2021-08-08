@@ -1,10 +1,10 @@
 import Trans from "next-translate/Trans";
-import useTranslation from "next-translate/useTranslation";
+// import useTranslation from "next-translate/useTranslation";
 
 import style from "./style.module.scss";
 
 export default function Banner() {
-  const { t } = useTranslation("home");
+  // const { t } = useTranslation("home");
 
   return (
     <div className={style.Banner}>

@@ -40,5 +40,12 @@
   code {
     color: var(--color-hl-orange);
     border-radius: var(--spacing-q);
+    padding: var(--spacing-q) var(--spacing-h);
+    margin: 0 var(--spacing-h);
+    box-shadow: 0 0 var(--spacing-q) var(--color-fg-secondary);
+  }
+
+  a {
+    color: var(--color-hl-yellow);
   }
 }
