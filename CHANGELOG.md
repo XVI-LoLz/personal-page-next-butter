@@ -7,6 +7,16 @@ Fixed
 Security
 ---
 
+## [0.12.0] - 2021-08-08
+
+### Added
+
+- Disqus comments to blog posts
+
+### Fixed
+
+- Links and code styles for PostBody
+
 ## [0.11.0] - 2021-08-07
 
 ### Added
