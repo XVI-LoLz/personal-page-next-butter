@@ -7,6 +7,12 @@ Fixed
 Security
 ---
 
+## [0.13.0] - 2021-08-09
+
+### Added
+
+- Google Analytics setup
+
 ## [0.12.0] - 2021-08-08
 
 ### Added
