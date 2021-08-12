@@ -16,6 +16,9 @@
 }
 
 .projectsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
   margin-bottom: var(--spacing-4);
 }
 
