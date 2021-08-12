@@ -1,22 +1,57 @@
 .ProjectCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 240px;
-  height: auto;
+  min-height: 160px;
+}
+
+.wrapper {
+  width: 240px;
+  min-height: 160px;
+}
+
+.cardBackground {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--spacing-1);
+}
+
+.cardLabel {
+  text-transform: uppercase;
+  font-size: var(--em-size-m);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.4rem;
+  padding: var(--spacing-2);
+  border-radius: var(--spacing-1);
+  text-align: center;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.wip {
   .cardBackground {
-    object-fit: cover;
-    border-radius: var(--spacing-1);
+    filter: grayscale(100) blur(1px);
   }
-  .cardLabel {
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-transform: uppercase;
-    font-size: var(--em-size-m);
-    letter-spacing: 0.4em;
-  }
+}
+
+.wipLabel {
+  position: absolute;
+  bottom: var(--spacing-1);
+  right: var(--spacing-1);
+  position: absolute;
+  padding: var(--spacing-q) var(--spacing-h);
+  background-color: var(--color-hl-orange);
+  text-shadow: 0 0 var(--spacing-q) rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: var(--spacing-q);
+  line-height: normal;
+  font-weight: bold;
 }
