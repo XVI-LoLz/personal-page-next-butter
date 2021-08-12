@@ -19,5 +19,6 @@
     "tooltip": "Updated: {{date}}"
   },
   "toc": "Table of content",
-  "moreArticles": "More articles"
+  "moreArticles": "More articles",
+  "wip": "WIP"
 }
