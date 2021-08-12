@@ -1,6 +1,6 @@
 {
   "root": true,
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -33,7 +33,7 @@
       }
     }
   },
-  "plugins": [],
+  "plugins": ["@babel"],
   "rules": {
     "indent": "off",
     "function-paren-newline": "off",
