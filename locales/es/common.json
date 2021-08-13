@@ -19,5 +19,6 @@
     "tooltip": "Actualizado: {{date}}"
   },
   "toc": "Tabla de contenido",
-  "moreArticles": "Más artículos"
+  "moreArticles": "Más artículos",
+  "wip": "En progreso"
 }
