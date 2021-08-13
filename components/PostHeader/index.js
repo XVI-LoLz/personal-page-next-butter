@@ -1,8 +1,13 @@
-import Image from "next/image";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
+import cn from "classnames";
+
+import { getLocaleFromCategories } from "utils/locales";
 
 import PostDate from "components/PostDate";
-import PostTitle from "components/PostTitle";
+import { Header } from "styled";
+
+import style from "./style.module.scss";
 
 export default function PostHeader({
   title,
@@ -11,16 +16,31 @@ export default function PostHeader({
   tags,
   featured_image: ftImage,
   featured_image_alt: ftImageAlt,
+  categories,
 }) {
+  const { locale } = useRouter();
+  const postLocale = getLocaleFromCategories(categories);
+
+  const isCurrentLocale = locale.toLowerCase() === postLocale.toLowerCase();
+
   return (
-    <div>
-      <PostTitle>{title}</PostTitle>
+    <div className={style.PostHeader}>
+      <header className={style.header}>
+        <Header>{title}</Header>
+      </header>
       <div className="post-subtitle">
         <PostDate published={published} updated={updated} />
         <div className="tags-container">
           {tags?.map(({ name }) => (
             <span key={name}>{name}</span>
-          ))}
+          ))}{" "}
+          <span
+            className={cn(style.localeTag, {
+              [style.current]: isCurrentLocale,
+            })}
+          >
+            {postLocale}
+          </span>
         </div>
       </div>
       {ftImage ? <img src={ftImage} alt={ftImageAlt} layout="fill" /> : null}

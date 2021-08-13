@@ -19,6 +19,11 @@
   }
 }
 
+.button {
+  all: unset;
+  cursor: pointer;
+}
+
 .link.active {
-  color: var(--color-hl-blue);
+  color: var(--color-hl-purple);
 }

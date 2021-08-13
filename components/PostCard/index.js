@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import useTranslation from "next-translate/useTranslation";
+import cn from "classnames";
 
 import PostDate from "components/PostDate";
 
-import { locales } from "utils/locales";
+import { getLocaleFromCategories } from "utils/locales";
+
 import style from "./style.module.scss";
 
 export default function PostCard({
@@ -17,13 +20,24 @@ export default function PostCard({
 }) {
   const { t } = useTranslation("common");
 
-  const locale = categories.find((el) => locales.includes(el.slug)).name;
+  const { locale } = useRouter();
+  const postLocale = getLocaleFromCategories(categories);
+
+  const isCurrentLocale = locale.toLowerCase() === postLocale.toLowerCase();
 
   return (
     <article className={style.PostCard}>
       <header className={style.cardHeader}>
         <span>{title}</span>
-        {locale ? <span>{locale}</span> : null}
+        {postLocale ? (
+          <span
+            className={cn(style.postLocale, {
+              [style.current]: isCurrentLocale,
+            })}
+          >
+            {postLocale}
+          </span>
+        ) : null}
       </header>
       <p className={style.cardDescription}>{summary}</p>
       <footer className={style.cardFooter}>

@@ -7,6 +7,23 @@ Fixed
 Security
 ---
 
+## [0.14.0] - 2021-08-13
+
+### Added
+
+- Custom render for code snippets and images in blog articles
+- Locale to PostCard and PostHeader
+
+### Changed
+
+- Styled components folder name to avoid conflicts
+
+### Fixed
+
+- Minor styling errors
+- Localization in PostBreadcrumbs
+
+
 ## [0.13.0] - 2021-08-09
 
 ### Added

@@ -1,0 +1,23 @@
+.PostHeader {
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.localeTag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--spacing-4);
+  padding: var(--spacing-h) var(--spacing-1);
+  border-radius: var(--spacing-h);
+  background-color: var(--color-fg-secondary);
+}
+
+.localeTag.current {
+  background-color: var(--color-hl-purple);
+}
