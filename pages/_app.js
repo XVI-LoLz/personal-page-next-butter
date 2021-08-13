@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import * as gtag from "../lib/gtag";
 
+import "react-medium-image-zoom/dist/styles.css";
 import "modern-css-reset";
 import "styles/variables.css";
 import "styles/globals.scss";
