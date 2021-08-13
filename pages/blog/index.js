@@ -5,7 +5,7 @@ import { getAllBlogCategories, getAllPostsWithSlug } from "lib/buttercms";
 
 import Page from "components/Page";
 import PostCard from "components/PostCard";
-import { Header } from "styled-components";
+import { Header } from "styled";
 
 import { fiveMinutes } from "utils/revalidation";
 import { getFilteredCategories } from "utils/locales";

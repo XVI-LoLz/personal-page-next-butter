@@ -16,9 +16,9 @@ import PostBody from "components/PostBody";
 import MorePosts from "components/MorePosts";
 import PostBreadcrumbs from "components/PostBreadcrumbs";
 import Whitespace from "components/Whitespace";
+import DisqusComments from "components/DisqusComments";
 
 import style from "components/Page/blog[slug].module.scss";
-import DisqusComments from "components/DisqusComments";
 
 const getMetadataFromPost = (post) => {
   const metadata = {

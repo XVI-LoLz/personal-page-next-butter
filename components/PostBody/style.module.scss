@@ -37,7 +37,7 @@
     margin: var(--spacing-q) 0;
   }
 
-  code {
+  :not(pre) > code {
     color: var(--color-hl-orange);
     border-radius: var(--spacing-q);
     padding: var(--spacing-q) var(--spacing-h);

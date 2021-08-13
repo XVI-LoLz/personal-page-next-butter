@@ -40,3 +40,11 @@
     font-weight: var(--weight-bold);
   }
 }
+
+.postLocale {
+  color: var(--color-fg-secondary);
+}
+
+.postLocale.current {
+  color: var(--color-hl-purple);
+}
