@@ -6,7 +6,7 @@ import Page from "components/Page";
 import Banner from "components/Banner";
 import ProjectCard from "components/ProjectCard";
 import MorePosts from "components/MorePosts";
-import Header from "styled-components/Header";
+import Header from "styled/Header";
 
 import style from "components/Page/home.module.scss";
 
