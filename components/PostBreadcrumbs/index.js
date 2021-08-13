@@ -3,13 +3,16 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
 import { getFilteredCategories } from "utils/locales";
-
-const blogBreadcrumbs = [
-  { label: "Home", href: "/" },
-  { label: "Blog", href: "/blog" },
-];
+import useTranslation from "next-translate/useTranslation";
 
 export default function PostBreadcrumbs({ post }) {
+  const { t } = useTranslation("common");
+
+  const blogBreadcrumbs = [
+    { label: t`navbar.home`, href: "/" },
+    { label: t`navbar.blog`, href: "/blog" },
+  ];
+
   const { categories = [] } = post || {};
   const [mainCategory] = getFilteredCategories(categories);
   const breadcrumbs = mainCategory
