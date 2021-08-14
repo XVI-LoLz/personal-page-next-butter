@@ -1,5 +1,5 @@
 import SyntaxHighlighter from "react-syntax-highlighter";
-import style from "./style";
+import editorStyle from "./editorStyle";
 
 export default function CodeHighlighter({ code, language }) {
   return (
