@@ -3,8 +3,20 @@ import Zoomable from "components/Zoomable";
 
 const getNodeAttributes = (node) => node.attribs;
 
-const getCodeLanguage = (codeNode) =>
-  getNodeAttributes(codeNode).class.split("-")[1];
+const getCodeParams = (codeNode) => {
+  const className = getNodeAttributes(codeNode)?.class || "";
+  const match = className.match(/(?<=language-)(?<language>\w*)/gm) || {};
+  const language = match[0] || "text";
+
+  const params = className.match(/(?<= )(?<language>\w*)/gm) || [];
+
+  const options = {
+    showLineNumbers: !params?.includes("noln"),
+    wrapLongLines: !params?.includes("noll"),
+  };
+
+  return { language, options };
+};
 
 const getCodeBody = (codeNode) => codeNode.children[0].data;
 
@@ -13,19 +25,28 @@ export const transform = (node, index) => {
     case "img": {
       const { attribs } = node;
       return (
-        <div className="image-wrapper">
-          <Zoomable key={index}>
+        <div key={index} className="image-wrapper">
+          <Zoomable>
             <img src={attribs.src} alt={attribs.alt} />
           </Zoomable>
         </div>
       );
     }
     case "pre": {
-      const first = node.children[0];
-      console.log(first);
-      const language = getCodeLanguage(first);
-      const code = getCodeBody(first);
-      return <CodeHighlighter language={language} code={code} />;
+      const first = node?.children[0];
+      if (first.name === "code") {
+        const { language, options } = getCodeParams(first);
+        const code = getCodeBody(first);
+        return (
+          <CodeHighlighter
+            key={index}
+            language={language}
+            code={code}
+            options={options}
+          />
+        );
+      }
+      return undefined;
     }
     default:
       return undefined;

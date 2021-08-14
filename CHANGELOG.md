@@ -7,6 +7,17 @@ Fixed
 Security
 ---
 
+## [0.15.0] - 2021-08-13
+
+### Added
+
+- Copy button to code snippets
+- CodeHighlighter options override from class names
+
+### Fixed
+
+- Code block language errors
+
 ## [0.14.0] - 2021-08-13
 
 ### Added
@@ -22,7 +33,6 @@ Security
 
 - Minor styling errors
 - Localization in PostBreadcrumbs
-
 
 ## [0.13.0] - 2021-08-09
 
@@ -59,7 +69,7 @@ Security
 
 ### Added
 
--	Locale buttons to nav bar
+- Locale buttons to nav bar
 - Footer and attribution section
 - Style improvements for mobile devices
 

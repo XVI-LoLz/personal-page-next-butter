@@ -1,0 +1,29 @@
+.CodeHighlighter {
+  position: relative;
+  &:hover {
+    .copyButton {
+      display: initial;
+    }
+  }
+}
+
+.copyButton {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  top: var(--spacing-1);
+  right: var(--spacing-1);
+  svg {
+    color: var(--color-fg-secondary);
+  }
+  &:hover {
+    svg {
+      color: var(--color-hl-yellow);
+    }
+  }
+  &:active {
+    svg {
+      color: var(--color-hl-orange);
+    }
+  }
+}
