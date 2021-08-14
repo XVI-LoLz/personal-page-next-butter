@@ -1,15 +1,32 @@
+import { FaCopy } from "react-icons/fa";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import editorStyle from "./editorStyle";
 
-export default function CodeHighlighter({ code, language }) {
+import style from "./style.module.scss";
+
+export default function CodeHighlighter({ code, language, options }) {
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(code);
+  };
+
   return (
-    <SyntaxHighlighter
-      language={language}
-      style={style}
-      showLineNumbers
-      wrapLongLines
-    >
-      {code}
-    </SyntaxHighlighter>
+    <div className={style.CodeHighlighter}>
+      <button
+        type="button"
+        className={style.copyButton}
+        onClick={copyToClipboard}
+      >
+        <FaCopy />
+      </button>
+      <SyntaxHighlighter
+        language={language}
+        style={editorStyle}
+        showLineNumbers
+        wrapLongLines
+        {...options}
+      >
+        {code}
+      </SyntaxHighlighter>
+    </div>
   );
 }
