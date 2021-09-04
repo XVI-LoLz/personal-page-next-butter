@@ -1,6 +1,6 @@
 backend:
-  name: test-repo
-  branch: feature/add-netlify-cms
+  name: git-gateway
+  branch: main
 media_folder: public/images
 public_folder: images
 publish_mode: editorial_workflow
@@ -11,6 +11,7 @@ collections:
     folder: "_content/blog/en"
     create: true
     filter: { field: "language", value: "en" }
+    created: "{{year}}-{{month}}-{{day}}"
     slug: "{{year}}-{{month}}-{{day}}/{{slug}}"
     fields:
       - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
@@ -18,7 +19,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Summary", name: "summary", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Last updated date", name: "updatedDate", widget: "datetime" }
       - {
           label: "Category",
           name: "category",
@@ -42,6 +43,7 @@ collections:
     folder: "_content/blog/es"
     create: true
     filter: { field: "language", value: "es" }
+    created: "{{year}}-{{month}}-{{day}}"
     slug: "{{year}}-{{month}}-{{day}}/{{slug}}"
     fields:
       - {
@@ -54,7 +56,11 @@ collections:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Descripción", name: "summary", widget: "text" }
       - { label: "Contenido", name: "body", widget: "markdown" }
-      - { label: "Fecha de publicación", name: "date", widget: "datetime" }
+      - {
+          label: "Última fecha de edición",
+          name: "updatedDate",
+          widget: "datetime",
+        }
       - {
           label: "Categoría",
           name: "category",
