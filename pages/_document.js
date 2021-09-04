@@ -7,6 +7,8 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
+
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async

@@ -1,0 +1,81 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: public/images
+public_folder: images
+publish_mode: editorial_workflow
+
+collections:
+  - name: "blog_en"
+    label: "[EN] Blog post"
+    folder: "_content/blog/en"
+    create: true
+    filter: { field: "language", value: "en" }
+    created: "{{year}}-{{month}}-{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}/{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
+      - { label: "Locale", name: "locale", widget: "hidden", default: "en" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Last updated date", name: "updatedDate", widget: "datetime" }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "select",
+          options: ["web-dev", "game-dev", "languages"],
+        }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - label: "Featured Image"
+        name: "featuredImage"
+        widget: "object"
+        fields:
+          - { label: "Image", name: "src", widget: "image" }
+          - {
+              label: "Image Description",
+              name: "alt",
+              widget: "string",
+              required: false,
+            }
+  - name: "blog_es"
+    label: "[ES] Blog post"
+    folder: "_content/blog/es"
+    create: true
+    filter: { field: "language", value: "es" }
+    created: "{{year}}-{{month}}-{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}/{{slug}}"
+    fields:
+      - {
+          label: "Distribución",
+          name: "layout",
+          widget: "hidden",
+          default: "blog",
+        }
+      - { label: "Lenguaje", name: "locale", widget: "hidden", default: "es" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Descripción", name: "summary", widget: "text" }
+      - { label: "Contenido", name: "body", widget: "markdown" }
+      - {
+          label: "Última fecha de edición",
+          name: "updatedDate",
+          widget: "datetime",
+        }
+      - {
+          label: "Categoría",
+          name: "category",
+          widget: "select",
+          options: ["web-dev", "game-dev", "languages"],
+        }
+      - { label: "Etiquetas", name: "tags", widget: "list" }
+      - label: "Imagen principal"
+        name: "featuredImage"
+        widget: "object"
+        fields:
+          - { label: "Imagen", name: "src", widget: "image" }
+          - {
+              label: "Descripción de imagen",
+              name: "alt",
+              widget: "string",
+              required: false,
+            }
