@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
-import ReactHtmlParser from "react-html-parser";
+import { MDXRemote } from "next-mdx-remote";
 
-import { transform } from "./transform";
+import components from "./mdxComponents";
 
 import style from "./style.module.scss";
 
 export default function PostBody({ content }) {
   return (
     <div className={style.PostBody}>
-      {ReactHtmlParser(content, { transform })}
+      <MDXRemote {...content} components={components} />
     </div>
   );
 }

@@ -1,8 +1,7 @@
-import PropTypes from "prop-types";
+import Image from "next/image";
 import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 import cn from "classnames";
-
-import { getLocaleFromCategories } from "utils/locales";
 
 import PostDate from "components/PostDate";
 import { Header } from "styled";
@@ -14,14 +13,15 @@ export default function PostHeader({
   published,
   updated,
   tags,
-  featured_image: ftImage,
-  featured_image_alt: ftImageAlt,
-  categories,
+  featuredImage,
+  category,
+  locale,
 }) {
-  const { locale } = useRouter();
-  const postLocale = getLocaleFromCategories(categories);
+  const { locale: siteLocale } = useRouter();
 
-  const isCurrentLocale = locale.toLowerCase() === postLocale.toLowerCase();
+  const isCurrentLocale = siteLocale.toLowerCase() === locale.toLowerCase();
+
+  console.log(tags);
 
   return (
     <div className={style.PostHeader}>
@@ -29,21 +29,28 @@ export default function PostHeader({
         <Header>{title}</Header>
       </header>
       <div className="post-subtitle">
-        <PostDate published={published} updated={updated} />
+        {/* <PostDate published={published} updated={updated} /> */}
         <div className="tags-container">
-          {tags?.map(({ name }) => (
-            <span key={name}>{name}</span>
-          ))}{" "}
+          {tags?.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
           <span
             className={cn(style.localeTag, {
               [style.current]: isCurrentLocale,
             })}
           >
-            {postLocale}
+            {locale}
           </span>
         </div>
       </div>
-      {ftImage ? <img src={ftImage} alt={ftImageAlt} layout="fill" /> : null}
+      {featuredImage ? (
+        <Image
+          src={`/${featuredImage.src}`}
+          alt={featuredImage.alt}
+          width={1200}
+          height={627}
+        />
+      ) : null}
     </div>
   );
 }
@@ -52,14 +59,10 @@ PostHeader.propTypes = {
   title: PropTypes.string,
   updated: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.shape({})),
-  featured_image: PropTypes.string,
-  featured_image_alt: PropTypes.string,
 };
 
 PostHeader.defaultProps = {
   title: "",
   updated: "",
   tags: [],
-  featured_image: "",
-  featured_image_alt: "",
 };
