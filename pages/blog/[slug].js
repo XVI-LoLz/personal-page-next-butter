@@ -1,10 +1,11 @@
 import fs from "fs";
 import yaml from "js-yaml";
 
-import PropTypes from "prop-types";
 import ErrorPage from "next/error";
 import { useRouter } from "next/router";
 import { serialize } from "next-mdx-remote/serialize";
+import matter from "gray-matter";
+import PropTypes from "prop-types";
 
 import {
   getAllBlogPosts,
@@ -12,8 +13,6 @@ import {
   getTableOfContents,
   sortAllByLocale,
 } from "lib/blogPosts";
-import { locales } from "utils/locales";
-import matter from "gray-matter";
 
 import Page from "components/Page";
 import Meta from "components/Meta";
