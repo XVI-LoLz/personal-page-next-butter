@@ -1,6 +1,6 @@
 ---
 layout: blog
-locale: EN
+locale: ES
 slug: sobre-mi
 title: Sobre mí
 summary: Un pequeño texto sobre quién soy y cómo llegue a ser desarrollador
