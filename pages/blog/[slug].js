@@ -26,21 +26,12 @@ import style from "components/Page/blog[slug].module.scss";
 export default function BlogPost({ content, metadata, toc }) {
   const router = useRouter();
 
-  const getHeadMetadata = ({ title, summary, featuredImage, tags }) => {
-    const getUrl = () => {
-      if (process.env.NODE_ENV === "production") {
-        return `${window.location.protocol}//${window.location.host}${router.asPath}`;
-      }
-      return undefined;
-    };
-    return {
-      title,
-      description: summary,
-      image: featuredImage.src,
-      keywords: tags.join(","),
-      url: getUrl(),
-    };
-  };
+  const getHeadMetadata = ({ title, summary, featuredImage, tags }) => ({
+    title,
+    description: summary,
+    image: featuredImage.src,
+    keywords: tags.join(","),
+  });
 
   if (!router.isFallback && !metadata.slug) {
     return <ErrorPage statusCode={404} />;
