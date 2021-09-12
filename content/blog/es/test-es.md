@@ -1,12 +1,12 @@
 ---
 layout: blog
 locale: ES
-slug: test-es
-title: About me
-summary: A brief text about who I am and how I got where I am
+slug: sobre-mi
+title: Sobre mí
+summary: Una breve descripción de quién soy y cómo llegué a donde estoy
 created: 2021-09-12T00:54:02.403Z
-updatedDate: 2021-09-12T00:54:02.403Z
-category: web-dev
+updatedDate: 2021-09-12T02:30:16.011Z
+category: personal
 tags:
   - Personal
 featuredImage:
