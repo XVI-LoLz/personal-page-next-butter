@@ -1,7 +1,7 @@
 ---
 layout: blog
 locale: EN
-slug: test-en
+slug: about-me
 title: About me
 summary: A brief text about who I am and how I got where I am
 created: 2021-09-12T00:54:02.403Z
@@ -14,11 +14,11 @@ featuredImage:
   alt: Little drawn character waving and saying hi
 ---
 
-My real name is Elihu. Just in case you are wondering, it is pronounced as if you spelled LU.I'm a self-taught developer in my mid-twenties. I do mostly web dev since I'm still learning about game development, but I want to focus on the latter at some point.
+My real name is Elihu. Just in case you are wondering, it is pronounced as if you spelled LU.I'm a self-taught developer in my mid-twenties. I do mostly web dev but I'm learning about game development. I want to focus on the latter at some point.
 Spanish is my mother tongue, although I know quite some English and basic Japanese.
 I love learning languages, not just programming ones.
 
-# A little bit of background
+## A little bit of background
 
 I graduated from Industrial Engineering a few years ago. Still, I didn't quite like all the field's professional opportunities, so I decided to self-study programming.
 Around April 2020, I started my journey as a web developer.
