@@ -6,37 +6,42 @@ public_folder: images
 publish_mode: editorial_workflow
 site_url: https://16th.me/
 display_url: https://16th.me/
-slug:
-  clean_accents: true
-  sanitize_replacement: "_"
 
 collections:
   - name: "blog_en"
     label: "[EN] Blog post"
     folder: "content/blog/en"
     create: true
-    filter: { field: "language", value: "EN" }
-    created: "{{year}}-{{month}}-{{day}}"
-    slug: "{{slug}}"
+    slug: "{{field.slug}}"
     fields:
       - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
-      - {
-          label: "Created",
-          name: "created",
-          widget: "hidden",
-          default: "{{year}}-{{month}}-{{day}}",
-        }
       - { label: "Locale", name: "locale", widget: "hidden", default: "EN" }
-      - { label: "Slug", name: "slug", widget: "string", default: "{{slug}}" }
+      - {
+          label: "Slug",
+          name: "slug",
+          widget: "string",
+          pattern: ["^([a-z][a-z0-9]*)(-[a-z0-9]+)*$", "Must be kebab cased"],
+        }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Summary", name: "summary", widget: "text" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Last updated date", name: "updatedDate", widget: "datetime" }
+      - {
+          label: "Created",
+          name: "created",
+          hint: "Only edit on creation",
+          widget: "datetime",
+        }
+      - {
+          label: "Last updated date",
+          name: "updatedDate",
+          hint: "Update after edit",
+          widget: "datetime",
+        }
       - {
           label: "Category",
           name: "category",
           widget: "select",
-          options: ["web-dev", "game-dev", "languages"],
+          options: ["web-dev", "game-dev", "languages", "personal"],
         }
       - { label: "Tags", name: "tags", widget: "list" }
       - label: "Featured Image"
@@ -54,9 +59,7 @@ collections:
     label: "[ES] Blog post"
     folder: "content/blog/es"
     create: true
-    filter: { field: "language", value: "ES" }
-    created: "{{year}}-{{month}}-{{day}}"
-    slug: "{{slug}}"
+    slug: "{{field.slug}}"
     fields:
       - {
           label: "Distribución",
@@ -64,27 +67,33 @@ collections:
           widget: "hidden",
           default: "blog",
         }
-      - {
-          label: "Creado",
-          name: "created",
-          widget: "hidden",
-          default: "{{year}}-{{month}}-{{day}}",
-        }
       - { label: "Lenguaje", name: "locale", widget: "hidden", default: "ES" }
-      - { label: "Slug", name: "slug", widget: "string", default: "{{slug}}" }
+      - {
+          label: "Slug",
+          name: "slug",
+          widget: "string",
+          pattern: ["^([a-z][a-z0-9]*)(-[a-z0-9]+)*$", "Formato kebab"],
+        }
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Descripción", name: "summary", widget: "text" }
       - { label: "Contenido", name: "body", widget: "markdown" }
       - {
+          label: "Creado",
+          name: "created",
+          hint: "Sólo editar al crear",
+          widget: "datetime",
+        }
+      - {
           label: "Última fecha de edición",
           name: "updatedDate",
+          hint: "Actualizar después de editar",
           widget: "datetime",
         }
       - {
           label: "Categoría",
           name: "category",
           widget: "select",
-          options: ["web-dev", "game-dev", "languages"],
+          options: ["web-dev", "game-dev", "languages", "personal"],
         }
       - { label: "Etiquetas", name: "tags", widget: "list" }
       - label: "Imagen principal"
