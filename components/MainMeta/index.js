@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 const metadata = {
-  title: "XVI-LoLz",
+  title: "16th",
   author: "Elihu Munguía",
   url: "https://www.16th.me/",
   image: "images/comic-hi-min.jpg",

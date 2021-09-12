@@ -6,42 +6,39 @@ import cn from "classnames";
 
 import PostDate from "components/PostDate";
 
-import { getLocaleFromCategories } from "utils/locales";
-
 import style from "./style.module.scss";
 
 export default function PostCard({
   title,
-  published,
-  updated,
+  created,
+  updatedDate,
   summary,
   slug,
-  categories,
+  locale,
 }) {
   const { t } = useTranslation("common");
 
-  const { locale } = useRouter();
-  const postLocale = getLocaleFromCategories(categories);
+  const { locale: siteLocale } = useRouter();
 
-  const isCurrentLocale = locale.toLowerCase() === postLocale.toLowerCase();
+  const isCurrentLocale = siteLocale.toLowerCase() === locale.toLowerCase();
 
   return (
     <article className={style.PostCard}>
       <header className={style.cardHeader}>
         <span>{title}</span>
-        {postLocale ? (
+        {locale ? (
           <span
-            className={cn(style.postLocale, {
+            className={cn(style.locale, {
               [style.current]: isCurrentLocale,
             })}
           >
-            {postLocale}
+            {locale}
           </span>
         ) : null}
       </header>
       <p className={style.cardDescription}>{summary}</p>
       <footer className={style.cardFooter}>
-        <PostDate published={published} updated={updated} />
+        <PostDate created={created} updated={updatedDate} />
         <Link href={`/blog/${encodeURIComponent(slug)}`}>
           <a className={style.cardCta}>{t`postCard.cta`}</a>
         </Link>
@@ -52,9 +49,9 @@ export default function PostCard({
 
 PostCard.propTypes = {
   title: PropTypes.string.isRequired,
-  published: PropTypes.string.isRequired,
-  updated: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+  updatedDate: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  locale: PropTypes.string.isRequired,
 };

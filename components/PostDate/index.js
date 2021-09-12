@@ -1,15 +1,21 @@
 import useTranslation from "next-translate/useTranslation";
+import PropTypes from "prop-types";
 
 import Date from "components/Date";
 
 import { formatISO } from "utils/date";
 
-export default function PostDate({ published, updated }) {
+export default function PostDate({ created, updated }) {
   const { t } = useTranslation("common");
-  const isUpdated = published !== updated;
+  const isUpdated = created !== updated;
   const tooltip = isUpdated
     ? t("date.tooltip", { date: formatISO(updated) })
-    : null;
+    : undefined;
 
-  return <Date dateString={published} title={tooltip} />;
+  return <Date dateString={created} title={tooltip} />;
 }
+
+PostDate.propTypes = {
+  created: PropTypes.string.isRequired,
+  updated: PropTypes.string.isRequired,
+};

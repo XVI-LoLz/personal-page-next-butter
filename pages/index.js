@@ -1,6 +1,8 @@
 import useTranslation from "next-translate/useTranslation";
+import PropTypes from "prop-types";
 
-import { getAllPostsForHome, getProjectsForHome } from "lib/buttercms";
+import { getProjectsForHome } from "lib/buttercms";
+import { getAllBlogPosts, sortAllByLocale } from "lib/blogPosts";
 
 import Page from "components/Page";
 import Banner from "components/Banner";
@@ -10,9 +12,7 @@ import Header from "styled/Header";
 
 import style from "components/Page/home.module.scss";
 
-import { fiveMinutes } from "utils/revalidation";
-
-export default function Home({ allPosts, projects }) {
+export default function Home({ posts, projects }) {
   const { t } = useTranslation("home");
 
   return (
@@ -21,7 +21,7 @@ export default function Home({ allPosts, projects }) {
       <div className={style.content}>
         <div className={style.cardsContainer}>
           <Header>{t`blogHeader`}</Header>
-          <MorePosts posts={allPosts} />
+          <MorePosts posts={posts} />
         </div>
 
         <Sidebar projects={projects} />
@@ -44,11 +44,27 @@ const Sidebar = ({ projects = [] }) => {
   );
 };
 
-export async function getStaticProps({ preview = null }) {
-  const allPosts = (await getAllPostsForHome(preview)) || [];
+Sidebar.propTypes = {
+  projects: PropTypes.arrayOf(PropTypes.shape({})),
+};
+Sidebar.defaultProps = {
+  projects: [],
+};
+
+export async function getStaticProps({ locale }) {
+  const allPosts = getAllBlogPosts();
+  const sortedPosts = sortAllByLocale(allPosts, locale);
   const projects = (await getProjectsForHome()) || [];
   return {
-    props: { allPosts, preview, projects },
-    revalidate: fiveMinutes,
+    props: { posts: sortedPosts, projects },
   };
 }
+
+Home.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape({})),
+  projects: PropTypes.arrayOf(PropTypes.shape({})),
+};
+Home.defaultProps = {
+  posts: [],
+  projects: [],
+};

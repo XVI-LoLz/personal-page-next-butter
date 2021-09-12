@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import PostCard from "components/PostCard";
 
 export default function MorePosts({ posts }) {
@@ -8,3 +10,11 @@ export default function MorePosts({ posts }) {
     </div>
   );
 }
+
+MorePosts.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+MorePosts.defaultProps = {
+  posts: [],
+};

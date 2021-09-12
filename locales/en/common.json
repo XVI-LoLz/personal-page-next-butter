@@ -20,5 +20,10 @@
   },
   "toc": "Table of content",
   "moreArticles": "More articles",
-  "wip": "WIP"
+  "wip": "WIP",
+  "categories": {
+    "web-dev": "Web Dev",
+    "game-dev": "Game Dev",
+    "personal": "Personal"
+  }
 }
