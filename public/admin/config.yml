@@ -17,9 +17,15 @@ collections:
     create: true
     filter: { field: "language", value: "EN" }
     created: "{{year}}-{{month}}-{{day}}"
-    slug: "{{year}}-{{month}}-{{day}}/{{slug}}"
+    slug: "{{slug}}"
     fields:
       - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
+      - {
+          label: "Created",
+          name: "created",
+          widget: "hidden",
+          default: "{{year}}-{{month}}-{{day}}",
+        }
       - { label: "Locale", name: "locale", widget: "hidden", default: "EN" }
       - { label: "Slug", name: "slug", widget: "string", default: "{{slug}}" }
       - { label: "Title", name: "title", widget: "string" }
@@ -50,13 +56,19 @@ collections:
     create: true
     filter: { field: "language", value: "ES" }
     created: "{{year}}-{{month}}-{{day}}"
-    slug: "{{year}}-{{month}}-{{day}}/{{slug}}"
+    slug: "{{slug}}"
     fields:
       - {
           label: "Distribución",
           name: "layout",
           widget: "hidden",
           default: "blog",
+        }
+      - {
+          label: "Creado",
+          name: "created",
+          widget: "hidden",
+          default: "{{year}}-{{month}}-{{day}}",
         }
       - { label: "Lenguaje", name: "locale", widget: "hidden", default: "ES" }
       - { label: "Slug", name: "slug", widget: "string", default: "{{slug}}" }

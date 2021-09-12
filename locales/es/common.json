@@ -20,5 +20,10 @@
   },
   "toc": "Tabla de contenido",
   "moreArticles": "Más artículos",
-  "wip": "En progreso"
+  "wip": "En progreso",
+  "categories": {
+    "web-dev": "Desarrollo Web",
+    "game-dev": "Desarrollo de Videojuegos",
+    "personal": "Personal"
+  }
 }

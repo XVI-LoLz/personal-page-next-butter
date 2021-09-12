@@ -1,9 +1,10 @@
 ---
 layout: blog
-locale: es
+locale: ES
 slug: un-titulo
 title: Un título
 summary: Una descripción
+created: 2021-09-04T02:19:46.484Z
 updatedDate: 2021-09-04T02:19:46.484Z
 category: web-dev
 tags:

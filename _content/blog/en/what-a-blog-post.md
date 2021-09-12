@@ -1,11 +1,12 @@
 ---
 layout: blog
-locale: en
+locale: EN
 slug: what-a-blog-post
-title: what a blog post
+title: What a blog post
 summary: some summary
+created: 2021-09-04T03:09:36.909Z
 updatedDate: 2021-09-04T03:09:36.909Z
-category: web-dev
+category: personal
 tags:
   - a-tag
 featuredImage:

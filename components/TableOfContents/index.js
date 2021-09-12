@@ -55,10 +55,10 @@ export default function TableOfContents({ content }) {
           </button>
         </header>
         <ul>
-          {content?.map(({ type, label, slug }) => (
+          {content?.map(({ type, title, slug }) => (
             <Link key={slug} href={{ hash: slug }} replace>
               <li className={style[type]} onClick={close} onKeyPress={() => {}}>
-                <a>{label}</a>
+                <a>{title}</a>
               </li>
             </Link>
           ))}

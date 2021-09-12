@@ -10,18 +10,15 @@ import style from "./style.module.scss";
 
 export default function PostHeader({
   title,
-  published,
-  updated,
+  created,
+  updatedDate,
   tags,
   featuredImage,
-  category,
   locale,
 }) {
   const { locale: siteLocale } = useRouter();
 
   const isCurrentLocale = siteLocale.toLowerCase() === locale.toLowerCase();
-
-  console.log(tags);
 
   return (
     <div className={style.PostHeader}>
@@ -29,7 +26,7 @@ export default function PostHeader({
         <Header>{title}</Header>
       </header>
       <div className="post-subtitle">
-        {/* <PostDate published={published} updated={updated} /> */}
+        <PostDate created={created} updated={updatedDate} />
         <div className="tags-container">
           {tags?.map((tag) => (
             <span key={tag}>{tag}</span>
@@ -57,12 +54,21 @@ export default function PostHeader({
 
 PostHeader.propTypes = {
   title: PropTypes.string,
-  updated: PropTypes.string,
-  tags: PropTypes.arrayOf(PropTypes.shape({})),
+  updatedDate: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string),
+  created: PropTypes.string,
+  featuredImage: PropTypes.shape({
+    src: PropTypes.string,
+    alt: PropTypes.string,
+  }),
+  locale: PropTypes.string,
 };
 
 PostHeader.defaultProps = {
   title: "",
-  updated: "",
+  updatedDate: "",
   tags: [],
+  created: "",
+  featuredImage: [],
+  locale: "",
 };

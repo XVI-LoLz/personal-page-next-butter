@@ -1,9 +1,10 @@
 ---
 layout: blog
-locale: en
+locale: EN
 slug: a-title
 title: A title
 summary: A description
+created: 2021-09-04T02:16:23.443Z
 updatedDate: 2021-09-04T02:16:23.443Z
 category: web-dev
 tags:
