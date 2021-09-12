@@ -7,6 +7,21 @@ Fixed
 Security
 ---
 
+## [0.16.0] - 2021-09-11
+
+### Added
+
+- next-mdx-remote, gray-matter and js-yaml libraries
+
+### Changed
+
+- Migrated blog post logic to Netlify CMS
+
+### Removed
+
+- disqus-react
+- react-html-parser
+
 ## [0.15.0] - 2021-08-13
 
 ### Added
