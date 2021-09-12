@@ -12,7 +12,7 @@ collections:
     label: "[EN] Blog post"
     folder: "content/blog/en"
     create: true
-    slug: "{{field.slug}}"
+    slug: "{{slug}}"
     fields:
       - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
       - { label: "Locale", name: "locale", widget: "hidden", default: "EN" }
@@ -59,7 +59,7 @@ collections:
     label: "[ES] Blog post"
     folder: "content/blog/es"
     create: true
-    slug: "{{field.slug}}"
+    slug: "{{slug}}"
     fields:
       - {
           label: "Distribución",
