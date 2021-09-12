@@ -26,7 +26,7 @@ Page.propTypes = {
 
 Page.defaultProps = {
   className: null,
-  title: "XVI-LoLz",
+  title: "16th",
   children: null,
   sidebar: null,
 };
