@@ -60,7 +60,7 @@ BlogPost.defaultProps = {
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const locale = getPostLocaleBySlug(slug);
-  const source = fs.readFileSync(`_content/blog/${locale}/${slug}.md`, "utf8");
+  const source = fs.readFileSync(`content/blog/${locale}/${slug}.md`, "utf8");
 
   const { content, data } = matter(source, {
     engines: { yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) },

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable jsx-a11y/alt-text */
 
@@ -6,12 +7,30 @@ import kebabCase from "lodash.kebabcase";
 import CodeHighlighter from "components/CodeHighlighter";
 import Zoomable from "components/Zoomable";
 
-const Heading1 = (props) => <h1 id={kebabCase(props.children)} {...props} />;
-const Heading2 = (props) => <h2 id={kebabCase(props.children)} {...props} />;
-const Heading3 = (props) => <h3 id={kebabCase(props.children)} {...props} />;
-const Heading4 = (props) => <h4 id={kebabCase(props.children)} {...props} />;
-const Heading5 = (props) => <h5 id={kebabCase(props.children)} {...props} />;
-const Heading6 = (props) => <h6 id={kebabCase(props.children)} {...props} />;
+const Heading1 = (props) => {
+  const { children } = props || {};
+  return <h1 id={kebabCase(children)} {...props} />;
+};
+const Heading2 = (props) => {
+  const { children } = props || {};
+  return <h2 id={kebabCase(children)} {...props} />;
+};
+const Heading3 = (props) => {
+  const { children } = props || {};
+  return <h3 id={kebabCase(children)} {...props} />;
+};
+const Heading4 = (props) => {
+  const { children } = props || {};
+  return <h4 id={kebabCase(children)} {...props} />;
+};
+const Heading5 = (props) => {
+  const { children } = props || {};
+  return <h5 id={kebabCase(children)} {...props} />;
+};
+const Heading6 = (props) => {
+  const { children } = props || {};
+  return <h6 id={kebabCase(children)} {...props} />;
+};
 
 const components = {
   img: (props) => (
