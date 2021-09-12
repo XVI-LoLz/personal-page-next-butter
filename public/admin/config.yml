@@ -13,7 +13,7 @@ slug:
 collections:
   - name: "blog_en"
     label: "[EN] Blog post"
-    folder: "_content/blog/en"
+    folder: "content/blog/en"
     create: true
     filter: { field: "language", value: "EN" }
     created: "{{year}}-{{month}}-{{day}}"
@@ -52,7 +52,7 @@ collections:
             }
   - name: "blog_es"
     label: "[ES] Blog post"
-    folder: "_content/blog/es"
+    folder: "content/blog/es"
     create: true
     filter: { field: "language", value: "ES" }
     created: "{{year}}-{{month}}-{{day}}"
