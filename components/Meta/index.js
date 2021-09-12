@@ -7,6 +7,7 @@ export default function Meta({ title, description, image, keywords, url }) {
       {title ? (
         <>
           <title>{title}</title>
+          <meta name="title" content={title} key="title" />
           <meta property="twitter:title" content={title} key="twitter:title" />
           <meta property="og:title" content={title} key="og:title" />
         </>

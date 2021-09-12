@@ -1,8 +1,9 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
 import { locales } from "utils/locales";
-import { useRouter } from "next/router";
 
 import style from "./style.module.scss";
 
@@ -14,20 +15,21 @@ export default function Locales({ hamburger }) {
   return (
     <div className={customClassName}>
       {locales.map((locale) => (
-        <button
-          className={style.button}
-          type="button"
+        <Link
           key={locale}
-          onClick={() => router.push(pathname, asPath, { locale })}
+          className={style.button}
+          href={`${pathname}`}
+          as={asPath}
+          locale={locale}
         >
-          <span
+          <a
             className={cn(style.link, {
               [style.active]: router.locale === locale,
             })}
           >
             {locale.toUpperCase()}
-          </span>
-        </button>
+          </a>
+        </Link>
       ))}
     </div>
   );
