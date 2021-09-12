@@ -10,6 +10,7 @@ import {
   getAllBlogPosts,
   getPostLocaleBySlug,
   getTableOfContents,
+  sortAllByLocale,
 } from "lib/blogPosts";
 import { locales } from "utils/locales";
 import matter from "gray-matter";
@@ -72,11 +73,11 @@ export async function getStaticProps({ params }) {
   return { props: { content: mdxSource, metadata: data, toc } };
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locale }) {
   const allPosts = getAllBlogPosts();
-  const paths = locales
-    .map((locale) => allPosts[`${locale}`].map((post) => `/blog/${post.slug}`))
-    .flat();
+  const sortedPosts = sortAllByLocale(allPosts, locale);
+  const paths = sortedPosts.map((post) => `/blog/${post.slug}`);
+
   return {
     paths,
     fallback: "blocking",

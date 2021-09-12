@@ -8,6 +8,7 @@ import style from "./style.module.scss";
 
 export default function Locales({ hamburger }) {
   const router = useRouter();
+  const { pathname, asPath } = router;
   const customClassName = cn(style.Locales, { [style.hamburger]: hamburger });
 
   return (
@@ -17,7 +18,7 @@ export default function Locales({ hamburger }) {
           className={style.button}
           type="button"
           key={locale}
-          onClick={() => router.push("", null, { locale })}
+          onClick={() => router.push(pathname, asPath, { locale })}
         >
           <span
             className={cn(style.link, {
