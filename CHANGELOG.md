@@ -7,6 +7,12 @@ Fixed
 Security
 ---
 
+## [0.17.0] - 2021-09-12
+
+### Added
+
+- Utterances as comments alternative
+
 ## [0.16.0] - 2021-09-11
 
 ### Added
