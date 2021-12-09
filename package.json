@@ -16,7 +16,7 @@
     "js-yaml": "^4.1.0",
     "lodash.kebabcase": "^4.1.1",
     "modern-css-reset": "^1.4.0",
-    "next": "^11.1.2",
+    "next": "^11.1.3",
     "next-mdx-remote": "^3.0.4",
     "next-translate": "^1.0.7",
     "prop-types": "^15.7.2",
